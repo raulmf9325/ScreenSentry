@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		4FC76E012BE83D07009402BF /* MindGuardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC76E002BE83D07009402BF /* MindGuardApp.swift */; };
-		4FC76E032BE83D07009402BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC76E022BE83D07009402BF /* ContentView.swift */; };
+		4FC76E032BE83D07009402BF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC76E022BE83D07009402BF /* HomeView.swift */; };
 		4FC76E052BE83D08009402BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FC76E042BE83D08009402BF /* Assets.xcassets */; };
 		4FC76E082BE83D08009402BF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FC76E072BE83D08009402BF /* Preview Assets.xcassets */; };
 		4FC76E122BE83D08009402BF /* MindGuardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC76E112BE83D08009402BF /* MindGuardTests.swift */; };
 		4FC76E1C2BE83D08009402BF /* MindGuardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC76E1B2BE83D08009402BF /* MindGuardUITests.swift */; };
 		4FC76E1E2BE83D08009402BF /* MindGuardUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC76E1D2BE83D08009402BF /* MindGuardUITestsLaunchTests.swift */; };
+		4FC76E2C2BE868E0009402BF /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC76E2B2BE868E0009402BF /* AppTheme.swift */; };
+		4FC76E312BE86DF2009402BF /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC76E302BE86DF2009402BF /* EntryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +38,7 @@
 /* Begin PBXFileReference section */
 		4FC76DFD2BE83D07009402BF /* MindGuard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MindGuard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FC76E002BE83D07009402BF /* MindGuardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindGuardApp.swift; sourceTree = "<group>"; };
-		4FC76E022BE83D07009402BF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4FC76E022BE83D07009402BF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4FC76E042BE83D08009402BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FC76E072BE83D08009402BF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4FC76E0D2BE83D08009402BF /* MindGuardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MindGuardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +46,8 @@
 		4FC76E172BE83D08009402BF /* MindGuardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MindGuardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FC76E1B2BE83D08009402BF /* MindGuardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindGuardUITests.swift; sourceTree = "<group>"; };
 		4FC76E1D2BE83D08009402BF /* MindGuardUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindGuardUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4FC76E2B2BE868E0009402BF /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		4FC76E302BE86DF2009402BF /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,10 +98,12 @@
 		4FC76DFF2BE83D07009402BF /* MindGuard */ = {
 			isa = PBXGroup;
 			children = (
+				4FC76E2D2BE8696E009402BF /* Home */,
+				4FC76E2A2BE868D2009402BF /* Theme */,
 				4FC76E002BE83D07009402BF /* MindGuardApp.swift */,
-				4FC76E022BE83D07009402BF /* ContentView.swift */,
 				4FC76E042BE83D08009402BF /* Assets.xcassets */,
 				4FC76E062BE83D08009402BF /* Preview Content */,
+				4FC76E302BE86DF2009402BF /* EntryView.swift */,
 			);
 			path = MindGuard;
 			sourceTree = "<group>";
@@ -125,6 +131,22 @@
 				4FC76E1D2BE83D08009402BF /* MindGuardUITestsLaunchTests.swift */,
 			);
 			path = MindGuardUITests;
+			sourceTree = "<group>";
+		};
+		4FC76E2A2BE868D2009402BF /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				4FC76E2B2BE868E0009402BF /* AppTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		4FC76E2D2BE8696E009402BF /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4FC76E022BE83D07009402BF /* HomeView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +279,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FC76E032BE83D07009402BF /* ContentView.swift in Sources */,
+				4FC76E2C2BE868E0009402BF /* AppTheme.swift in Sources */,
+				4FC76E032BE83D07009402BF /* HomeView.swift in Sources */,
 				4FC76E012BE83D07009402BF /* MindGuardApp.swift in Sources */,
+				4FC76E312BE86DF2009402BF /* EntryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
