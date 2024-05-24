@@ -7,13 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4FC76E012BE83D07009402BF /* MindGuardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC76E002BE83D07009402BF /* MindGuardApp.swift */; };
+		4FC76E012BE83D07009402BF /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC76E002BE83D07009402BF /* App.swift */; };
 		4FC76E032BE83D07009402BF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC76E022BE83D07009402BF /* HomeView.swift */; };
 		4FC76E052BE83D08009402BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FC76E042BE83D08009402BF /* Assets.xcassets */; };
 		4FC76E082BE83D08009402BF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FC76E072BE83D08009402BF /* Preview Assets.xcassets */; };
-		4FC76E122BE83D08009402BF /* MindGuardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC76E112BE83D08009402BF /* MindGuardTests.swift */; };
-		4FC76E1C2BE83D08009402BF /* MindGuardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC76E1B2BE83D08009402BF /* MindGuardUITests.swift */; };
-		4FC76E1E2BE83D08009402BF /* MindGuardUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC76E1D2BE83D08009402BF /* MindGuardUITestsLaunchTests.swift */; };
 		4FC76E2C2BE868E0009402BF /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC76E2B2BE868E0009402BF /* AppTheme.swift */; };
 		4FC76E312BE86DF2009402BF /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC76E302BE86DF2009402BF /* EntryView.swift */; };
 /* End PBXBuildFile section */
@@ -36,16 +33,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4FC76DFD2BE83D07009402BF /* MindGuard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MindGuard.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4FC76E002BE83D07009402BF /* MindGuardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindGuardApp.swift; sourceTree = "<group>"; };
+		4FC76DFD2BE83D07009402BF /* ScreenSentry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenSentry.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FC76E002BE83D07009402BF /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		4FC76E022BE83D07009402BF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4FC76E042BE83D08009402BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FC76E072BE83D08009402BF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		4FC76E0D2BE83D08009402BF /* MindGuardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MindGuardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4FC76E112BE83D08009402BF /* MindGuardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindGuardTests.swift; sourceTree = "<group>"; };
-		4FC76E172BE83D08009402BF /* MindGuardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MindGuardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4FC76E1B2BE83D08009402BF /* MindGuardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindGuardUITests.swift; sourceTree = "<group>"; };
-		4FC76E1D2BE83D08009402BF /* MindGuardUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindGuardUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4FC76E0D2BE83D08009402BF /* ScreenSentryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScreenSentryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FC76E172BE83D08009402BF /* ScreenSentryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScreenSentryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FC76E2B2BE868E0009402BF /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		4FC76E302BE86DF2009402BF /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,9 +72,7 @@
 		4FC76DF42BE83D07009402BF = {
 			isa = PBXGroup;
 			children = (
-				4FC76DFF2BE83D07009402BF /* MindGuard */,
-				4FC76E102BE83D08009402BF /* MindGuardTests */,
-				4FC76E1A2BE83D08009402BF /* MindGuardUITests */,
+				4FC76DFF2BE83D07009402BF /* ScreenSentry */,
 				4FC76DFE2BE83D07009402BF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,24 +80,24 @@
 		4FC76DFE2BE83D07009402BF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4FC76DFD2BE83D07009402BF /* MindGuard.app */,
-				4FC76E0D2BE83D08009402BF /* MindGuardTests.xctest */,
-				4FC76E172BE83D08009402BF /* MindGuardUITests.xctest */,
+				4FC76DFD2BE83D07009402BF /* ScreenSentry.app */,
+				4FC76E0D2BE83D08009402BF /* ScreenSentryTests.xctest */,
+				4FC76E172BE83D08009402BF /* ScreenSentryUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4FC76DFF2BE83D07009402BF /* MindGuard */ = {
+		4FC76DFF2BE83D07009402BF /* ScreenSentry */ = {
 			isa = PBXGroup;
 			children = (
 				4FC76E2D2BE8696E009402BF /* Home */,
 				4FC76E2A2BE868D2009402BF /* Theme */,
-				4FC76E002BE83D07009402BF /* MindGuardApp.swift */,
+				4FC76E002BE83D07009402BF /* App.swift */,
 				4FC76E042BE83D08009402BF /* Assets.xcassets */,
 				4FC76E062BE83D08009402BF /* Preview Content */,
 				4FC76E302BE86DF2009402BF /* EntryView.swift */,
 			);
-			path = MindGuard;
+			path = ScreenSentry;
 			sourceTree = "<group>";
 		};
 		4FC76E062BE83D08009402BF /* Preview Content */ = {
@@ -114,23 +106,6 @@
 				4FC76E072BE83D08009402BF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		4FC76E102BE83D08009402BF /* MindGuardTests */ = {
-			isa = PBXGroup;
-			children = (
-				4FC76E112BE83D08009402BF /* MindGuardTests.swift */,
-			);
-			path = MindGuardTests;
-			sourceTree = "<group>";
-		};
-		4FC76E1A2BE83D08009402BF /* MindGuardUITests */ = {
-			isa = PBXGroup;
-			children = (
-				4FC76E1B2BE83D08009402BF /* MindGuardUITests.swift */,
-				4FC76E1D2BE83D08009402BF /* MindGuardUITestsLaunchTests.swift */,
-			);
-			path = MindGuardUITests;
 			sourceTree = "<group>";
 		};
 		4FC76E2A2BE868D2009402BF /* Theme */ = {
@@ -152,9 +127,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4FC76DFC2BE83D07009402BF /* MindGuard */ = {
+		4FC76DFC2BE83D07009402BF /* ScreenSentry */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FC76E212BE83D08009402BF /* Build configuration list for PBXNativeTarget "MindGuard" */;
+			buildConfigurationList = 4FC76E212BE83D08009402BF /* Build configuration list for PBXNativeTarget "ScreenSentry" */;
 			buildPhases = (
 				4FC76DF92BE83D07009402BF /* Sources */,
 				4FC76DFA2BE83D07009402BF /* Frameworks */,
@@ -164,14 +139,14 @@
 			);
 			dependencies = (
 			);
-			name = MindGuard;
+			name = ScreenSentry;
 			productName = MindGuard;
-			productReference = 4FC76DFD2BE83D07009402BF /* MindGuard.app */;
+			productReference = 4FC76DFD2BE83D07009402BF /* ScreenSentry.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4FC76E0C2BE83D08009402BF /* MindGuardTests */ = {
+		4FC76E0C2BE83D08009402BF /* ScreenSentryTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FC76E242BE83D08009402BF /* Build configuration list for PBXNativeTarget "MindGuardTests" */;
+			buildConfigurationList = 4FC76E242BE83D08009402BF /* Build configuration list for PBXNativeTarget "ScreenSentryTests" */;
 			buildPhases = (
 				4FC76E092BE83D08009402BF /* Sources */,
 				4FC76E0A2BE83D08009402BF /* Frameworks */,
@@ -182,14 +157,14 @@
 			dependencies = (
 				4FC76E0F2BE83D08009402BF /* PBXTargetDependency */,
 			);
-			name = MindGuardTests;
+			name = ScreenSentryTests;
 			productName = MindGuardTests;
-			productReference = 4FC76E0D2BE83D08009402BF /* MindGuardTests.xctest */;
+			productReference = 4FC76E0D2BE83D08009402BF /* ScreenSentryTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4FC76E162BE83D08009402BF /* MindGuardUITests */ = {
+		4FC76E162BE83D08009402BF /* ScreenSentryUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FC76E272BE83D08009402BF /* Build configuration list for PBXNativeTarget "MindGuardUITests" */;
+			buildConfigurationList = 4FC76E272BE83D08009402BF /* Build configuration list for PBXNativeTarget "ScreenSentryUITests" */;
 			buildPhases = (
 				4FC76E132BE83D08009402BF /* Sources */,
 				4FC76E142BE83D08009402BF /* Frameworks */,
@@ -200,9 +175,9 @@
 			dependencies = (
 				4FC76E192BE83D08009402BF /* PBXTargetDependency */,
 			);
-			name = MindGuardUITests;
+			name = ScreenSentryUITests;
 			productName = MindGuardUITests;
-			productReference = 4FC76E172BE83D08009402BF /* MindGuardUITests.xctest */;
+			productReference = 4FC76E172BE83D08009402BF /* ScreenSentryUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -228,7 +203,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4FC76DF82BE83D07009402BF /* Build configuration list for PBXProject "MindGuard" */;
+			buildConfigurationList = 4FC76DF82BE83D07009402BF /* Build configuration list for PBXProject "ScreenSentry" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -241,9 +216,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4FC76DFC2BE83D07009402BF /* MindGuard */,
-				4FC76E0C2BE83D08009402BF /* MindGuardTests */,
-				4FC76E162BE83D08009402BF /* MindGuardUITests */,
+				4FC76DFC2BE83D07009402BF /* ScreenSentry */,
+				4FC76E0C2BE83D08009402BF /* ScreenSentryTests */,
+				4FC76E162BE83D08009402BF /* ScreenSentryUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -281,7 +256,7 @@
 			files = (
 				4FC76E2C2BE868E0009402BF /* AppTheme.swift in Sources */,
 				4FC76E032BE83D07009402BF /* HomeView.swift in Sources */,
-				4FC76E012BE83D07009402BF /* MindGuardApp.swift in Sources */,
+				4FC76E012BE83D07009402BF /* App.swift in Sources */,
 				4FC76E312BE86DF2009402BF /* EntryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,7 +265,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FC76E122BE83D08009402BF /* MindGuardTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,8 +272,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FC76E1E2BE83D08009402BF /* MindGuardUITestsLaunchTests.swift in Sources */,
-				4FC76E1C2BE83D08009402BF /* MindGuardUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,12 +280,12 @@
 /* Begin PBXTargetDependency section */
 		4FC76E0F2BE83D08009402BF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4FC76DFC2BE83D07009402BF /* MindGuard */;
+			target = 4FC76DFC2BE83D07009402BF /* ScreenSentry */;
 			targetProxy = 4FC76E0E2BE83D08009402BF /* PBXContainerItemProxy */;
 		};
 		4FC76E192BE83D08009402BF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4FC76DFC2BE83D07009402BF /* MindGuard */;
+			target = 4FC76DFC2BE83D07009402BF /* ScreenSentry */;
 			targetProxy = 4FC76E182BE83D08009402BF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -371,7 +343,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -428,7 +400,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -445,8 +417,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MindGuard/Preview Content\"";
-				DEVELOPMENT_TEAM = Z77T7JBU49;
+				DEVELOPMENT_ASSET_PATHS = "\"ScreenSentry/Preview Content\"";
+				DEVELOPMENT_TEAM = 74Q66W826L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -459,7 +431,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = HOME.MindGuard;
+				PRODUCT_BUNDLE_IDENTIFIER = come.home.screensentry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -474,8 +446,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"MindGuard/Preview Content\"";
-				DEVELOPMENT_TEAM = Z77T7JBU49;
+				DEVELOPMENT_ASSET_PATHS = "\"ScreenSentry/Preview Content\"";
+				DEVELOPMENT_TEAM = 74Q66W826L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -488,7 +460,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = HOME.MindGuard;
+				PRODUCT_BUNDLE_IDENTIFIER = come.home.screensentry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -512,7 +484,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MindGuard.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MindGuard";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ScreenSentry.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ScreenSentry";
 			};
 			name = Debug;
 		};
@@ -532,7 +504,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MindGuard.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MindGuard";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ScreenSentry.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ScreenSentry";
 			};
 			name = Release;
 		};
@@ -575,7 +547,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4FC76DF82BE83D07009402BF /* Build configuration list for PBXProject "MindGuard" */ = {
+		4FC76DF82BE83D07009402BF /* Build configuration list for PBXProject "ScreenSentry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FC76E1F2BE83D08009402BF /* Debug */,
@@ -584,7 +556,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FC76E212BE83D08009402BF /* Build configuration list for PBXNativeTarget "MindGuard" */ = {
+		4FC76E212BE83D08009402BF /* Build configuration list for PBXNativeTarget "ScreenSentry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FC76E222BE83D08009402BF /* Debug */,
@@ -593,7 +565,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FC76E242BE83D08009402BF /* Build configuration list for PBXNativeTarget "MindGuardTests" */ = {
+		4FC76E242BE83D08009402BF /* Build configuration list for PBXNativeTarget "ScreenSentryTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FC76E252BE83D08009402BF /* Debug */,
@@ -602,7 +574,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FC76E272BE83D08009402BF /* Build configuration list for PBXNativeTarget "MindGuardUITests" */ = {
+		4FC76E272BE83D08009402BF /* Build configuration list for PBXNativeTarget "ScreenSentryUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FC76E282BE83D08009402BF /* Debug */,

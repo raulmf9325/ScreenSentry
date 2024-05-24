@@ -1,6 +1,6 @@
 //
 //  EntryView.swift
-//  MindGuard
+//  ScreenSentry
 //
 //  Created by Raul Mena on 5/5/24.
 //
