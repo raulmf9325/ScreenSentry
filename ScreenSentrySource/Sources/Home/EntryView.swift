@@ -6,19 +6,22 @@
 //
 
 import SwiftUI
+import AppUI
 
-struct EntryView: View {
-    var body: some View {
+public struct EntryView: View {
+    public init() {}
+    
+    public var body: some View {
         TabView {
             HomeView()
                 .tabItem {
-                    AppTheme.Images.home
+                    Images.home
                         .renderingMode(.template)
                 }
             
             HomeView()
                 .tabItem {
-                    AppTheme.Images.home
+                    Images.home
                         .renderingMode(.template)
                 }
         }

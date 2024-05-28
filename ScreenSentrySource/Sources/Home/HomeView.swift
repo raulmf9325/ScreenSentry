@@ -6,17 +6,18 @@
 //
 
 import SwiftUI
+import AppUI
 
-struct HomeView: View {
-    var body: some View {
+public struct HomeView: View {
+    public init() {}
+    
+    public var body: some View {
         ZStack {
             AppTheme.Colors.accentColor
                 .ignoresSafeArea()
         }
     }
 }
-
-
 
 
 #Preview {
