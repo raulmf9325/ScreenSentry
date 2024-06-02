@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "ScreenSentrySource",
+    name: "screen-sentry",
     platforms: [
         .iOS(.v15)
     ],
