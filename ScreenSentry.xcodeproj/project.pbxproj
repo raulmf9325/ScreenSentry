@@ -67,8 +67,8 @@
 			isa = PBXGroup;
 			children = (
 				4FC76E002BE83D07009402BF /* App.swift */,
-				4F24CB342C05615F00495DF2 /* Assets.xcassets */,
 				4F0B3F442C0D56F500D5FC3E /* RootView.swift */,
+				4F24CB342C05615F00495DF2 /* Assets.xcassets */,
 			);
 			path = ScreenSentry;
 			sourceTree = "<group>";
