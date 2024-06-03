@@ -1,14 +1,15 @@
 //
-//  EntryView.swift
+//  RootView.swift
 //  ScreenSentry
 //
-//  Created by Raul Mena on 5/5/24.
+//  Created by Raul Mena on 6/2/24.
 //
 
 import SwiftUI
+import Home
 import AppUI
 
-public struct EntryView: View {
+public struct AppTabView: View {
     public init() {}
     
     public var body: some View {
@@ -25,10 +26,10 @@ public struct EntryView: View {
                         .renderingMode(.template)
                 }
         }
-        .tint(.yellow)
+        .tint(.white)
     }
 }
 
 #Preview {
-    EntryView()
+    AppTabView()
 }

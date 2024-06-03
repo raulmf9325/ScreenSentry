@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F0B3F452C0D56F500D5FC3E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0B3F442C0D56F500D5FC3E /* RootView.swift */; };
 		4F24CB332C0559B500495DF2 /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4F24CB322C0559B500495DF2 /* AppUI */; };
 		4F2567892C0CCC4A00BA1236 /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4F2567882C0CCC4A00BA1236 /* AppUI */; };
 		4F25678B2C0CCC4A00BA1236 /* Home in Frameworks */ = {isa = PBXBuildFile; productRef = 4F25678A2C0CCC4A00BA1236 /* Home */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F0B3F442C0D56F500D5FC3E /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		4F24CB342C05615F00495DF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F25678C2C0CCC6800BA1236 /* screen-sentry */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "screen-sentry"; sourceTree = "<group>"; };
 		4FC76DFD2BE83D07009402BF /* ScreenSentry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenSentry.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +68,7 @@
 			children = (
 				4FC76E002BE83D07009402BF /* App.swift */,
 				4F24CB342C05615F00495DF2 /* Assets.xcassets */,
+				4F0B3F442C0D56F500D5FC3E /* RootView.swift */,
 			);
 			path = ScreenSentry;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F0B3F452C0D56F500D5FC3E /* RootView.swift in Sources */,
 				4FC76E012BE83D07009402BF /* App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

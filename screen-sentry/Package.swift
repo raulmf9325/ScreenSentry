@@ -8,6 +8,7 @@ let package = Package(
         .iOS(.v15)
     ],
     products: [
+        .library(name: "AppCore", targets: ["AppCore"]),
         .library(name: "AppUI", targets: ["AppUI"]),
         .library(name: "Home", targets: ["Home"]),
     ],
@@ -21,6 +22,12 @@ let package = Package(
             name: "Home",
             dependencies: [
                 "AppUI",
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+            ]),
+        .target(
+            name: "AppCore",
+            dependencies: [
+                "Home",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
             ]),
     ]

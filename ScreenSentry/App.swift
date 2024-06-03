@@ -6,13 +6,12 @@
 //
 
 import SwiftUI
-import Home
 
 @main
 struct ScreenSentryApp: App {
     var body: some Scene {
         WindowGroup {
-            EntryView()
+            AppTabView()
         }
     }
 }
