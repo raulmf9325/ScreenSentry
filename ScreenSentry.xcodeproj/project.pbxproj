@@ -14,6 +14,7 @@
 		4F25678B2C0CCC4A00BA1236 /* Home in Frameworks */ = {isa = PBXBuildFile; productRef = 4F25678A2C0CCC4A00BA1236 /* Home */; };
 		4F60257B2C05310100E2D08F /* Home in Frameworks */ = {isa = PBXBuildFile; productRef = 4F60257A2C05310100E2D08F /* Home */; };
 		4FC76E012BE83D07009402BF /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC76E002BE83D07009402BF /* App.swift */; };
+		4FED50B82C17637100686BCA /* ScreenTimeApiLive in Frameworks */ = {isa = PBXBuildFile; productRef = 4FED50B72C17637100686BCA /* ScreenTimeApiLive */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		4F25678C2C0CCC6800BA1236 /* screen-sentry */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "screen-sentry"; sourceTree = "<group>"; };
 		4FC76DFD2BE83D07009402BF /* ScreenSentry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenSentry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FC76E002BE83D07009402BF /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		4FED50B92C179ED100686BCA /* ScreenSentry.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScreenSentry.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +36,7 @@
 				4F25678B2C0CCC4A00BA1236 /* Home in Frameworks */,
 				4F24CB332C0559B500495DF2 /* AppUI in Frameworks */,
 				4F60257B2C05310100E2D08F /* Home in Frameworks */,
+				4FED50B82C17637100686BCA /* ScreenTimeApiLive in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +71,7 @@
 		4FC76DFF2BE83D07009402BF /* ScreenSentry */ = {
 			isa = PBXGroup;
 			children = (
+				4FED50B92C179ED100686BCA /* ScreenSentry.entitlements */,
 				4FC76E002BE83D07009402BF /* App.swift */,
 				4F0B3F442C0D56F500D5FC3E /* RootView.swift */,
 				4F24CB342C05615F00495DF2 /* Assets.xcassets */,
@@ -97,6 +101,7 @@
 				4F2567882C0CCC4A00BA1236 /* AppUI */,
 				4F25678A2C0CCC4A00BA1236 /* Home */,
 				4F0B3F462C0D67AE00D5FC3E /* AppCore */,
+				4FED50B72C17637100686BCA /* ScreenTimeApiLive */,
 			);
 			productName = MindGuard;
 			productReference = 4FC76DFD2BE83D07009402BF /* ScreenSentry.app */;
@@ -284,6 +289,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ScreenSentry/ScreenSentry.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ScreenSentry/\"";
@@ -313,6 +319,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ScreenSentry/ScreenSentry.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ScreenSentry/\"";
@@ -380,6 +387,10 @@
 		4F60257A2C05310100E2D08F /* Home */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Home;
+		};
+		4FED50B72C17637100686BCA /* ScreenTimeApiLive */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ScreenTimeApiLive;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

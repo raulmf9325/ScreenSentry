@@ -43,7 +43,10 @@ let package = Package(
         ),
         .target(
             name: "ScreenTimeApiLive",
-        dependencies: ["ScreenTimeAPI"]),
+        dependencies: [
+            "ScreenTimeAPI",
+            .product(name: "Dependencies", package: "swift-dependencies")
+        ]),
         
     ]
 )

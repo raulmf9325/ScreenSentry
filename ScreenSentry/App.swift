@@ -8,6 +8,7 @@
 import AppCore
 import ComposableArchitecture
 import SwiftUI
+import ScreenTimeApiLive
 
 @main
 struct ScreenSentryApp: App {

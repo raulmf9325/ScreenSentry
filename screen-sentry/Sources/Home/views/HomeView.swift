@@ -5,9 +5,10 @@
 //  Created by Raul Mena on 5/5/24.
 //
 
+import AppUI
 import ComposableArchitecture
 import SwiftUI
-import AppUI
+import ScreenTimeAPI
 
 public struct HomeView: View {
     @Perception.Bindable var store: StoreOf<Home>
@@ -22,12 +23,17 @@ public struct HomeView: View {
                 AppTheme.Colors.accentColor
                     .ignoresSafeArea()
                 
-                VStack {
-                    if store.screenTimeAccess == .denied {
-                        ErrorView()
+                ScrollView {
+                    VStack {
+                        if store.screenTimeAccess == .denied {
+                            PermissionDeniedView(onButtonTapped: requestScreenTimeAccess)
+                            Spacer()
+                        } else {
+                            BlockContentView()
+                        }
                     }
+                    .padding(10)
                 }
-                .padding(10)
             }
         }
         .onAppear {
@@ -35,27 +41,8 @@ public struct HomeView: View {
         }
     }
     
-    func ErrorView() -> some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack {
-                Image(systemName: "exclamationmark.triangle.fill")
-                    .font(.title)
-                
-                Text("Permission denied")
-                    .font(.headline)
-            }
-            .foregroundStyle(.red)
-            
-            Text("Screen Sentry needs access to Screen Time in order to work.")
-                .foregroundStyle(.white)
-            
-            Button(action: {}) {
-                Text("Grant access >")
-                    .bold()
-                    .foregroundStyle(AppTheme.Colors.primaryTextColor)
-            }
-        }
-        .sectionView()
+    func requestScreenTimeAccess() {
+        store.send(.requestScreenTimeApiAccess)
     }
 }
 
@@ -63,6 +50,10 @@ public struct HomeView: View {
 #Preview {
     HomeView(store: Store(initialState: Home.State()) {
         Home()
-    })
+    } withDependencies: {
+        $0.screenTimeApi.requestAccess = { @Sendable in
+            return .approved
+        }
+    } )
 }
 

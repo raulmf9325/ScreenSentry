@@ -5,12 +5,13 @@
 //  Created by Raul Mena on 6/9/24.
 //
 
+import Dependencies
 import FamilyControls
 import Foundation
 import ScreenTimeAPI
 
-extension ScreenTimeAPI {
-    public static let live = ScreenTimeAPI(requestAccess: requestScreenTimeAccess)
+extension ScreenTimeAPI: DependencyKey {
+    public static let liveValue = Self(requestAccess: requestScreenTimeAccess)
 }
 
 @Sendable
