@@ -7,21 +7,37 @@
 
 import ComposableArchitecture
 import SwiftUI
+import Home
 
 @Reducer
-struct AppState {
+public struct ScreenSentry {
     @ObservableState
-    struct State: Equatable {
+    public struct State: Equatable {
+        public var selectedTab: Tab = .home
+        public var home = Home.State()
+        public var profile = Home.State()
         
+        public enum Tab: Equatable {
+            case home
+            case profile
+        }
+        
+        public init() {}
     }
     
-    enum Action {
-        
+    public enum Action {
+        case home(Home.Action)
+        case profile(Home.Action)
     }
     
-    var body: some ReducerOf<Self> {
-        Reduce { state, action in
-            return .none
+    public init() {}
+    
+    public var body: some ReducerOf<Self> {
+        Scope(state: \.home, action: \.home) {
+            Home()
+        }
+        Scope(state: \.profile, action: \.profile) {
+            Home()
         }
     }
 }

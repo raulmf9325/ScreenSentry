@@ -5,22 +5,31 @@
 //  Created by Raul Mena on 5/5/24.
 //
 
+import ComposableArchitecture
 import SwiftUI
 import AppUI
 
 public struct HomeView: View {
-    public init() {}
+    @Perception.Bindable var store: StoreOf<Home>
+    
+    public init(store: StoreOf<Home>) {
+        self.store = store
+    }
     
     public var body: some View {
-        ZStack {
-            AppTheme.Colors.accentColor
-                .ignoresSafeArea()
+        WithPerceptionTracking {
+            ZStack {
+                AppTheme.Colors.accentColor
+                    .ignoresSafeArea()                
+            }
         }
     }
 }
 
 
 #Preview {
-    HomeView()
+    HomeView(store: Store(initialState: Home.State()) {
+        Home()
+    })
 }
 
