@@ -6,25 +6,47 @@
 //
 
 import ComposableArchitecture
+import ScreenTimeAPI
 
 @Reducer
-public struct Home {
+public struct Home: Sendable {
     @ObservableState
     public struct State: Equatable {
         public init() {}
+        
+        var screenTimeAccess: ScreenTimeAccess = .notDetermined
     }
     
-    public enum Action {
-        case incrementButtonTapped
-        case decrementButtonTapped
-        case resetButtonTapped
+    public enum Action: Sendable {
+        case onHomeViewAppeared
+        case requestScreenTimeApiAccess
+        case screenTimeAccessResponse(ScreenTimeAccess)
     }
     
     public init() {}
     
+    @Dependency(\.screenTimeApi) var screenTimeApi
+    
     public var body: some ReducerOf<Self> {
         Reduce { state, action in
-            return .none
+            switch action {
+            case .onHomeViewAppeared:
+                return .send(.requestScreenTimeApiAccess)
+
+            case .requestScreenTimeApiAccess:
+                return .run { send in
+                    do {
+                        let access = try await screenTimeApi.requestAccess()
+                        await send(.screenTimeAccessResponse(access))
+                    } catch {
+                        print("Error requesting screen time access: \(error)")
+                        await send(.screenTimeAccessResponse(.denied))
+                    }
+                }
+            case let .screenTimeAccessResponse(access):
+                state.screenTimeAccess = access
+                return .none
+            }
         }
     }
 }

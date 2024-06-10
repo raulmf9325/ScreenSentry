@@ -29,6 +29,7 @@ let package = Package(
             name: "Home",
             dependencies: [
                 "AppUI",
+                "ScreenTimeAPI",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
             ]),
         .target(
