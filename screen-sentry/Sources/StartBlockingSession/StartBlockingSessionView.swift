@@ -8,13 +8,15 @@
 import AppUI
 import ComposableArchitecture
 import SwiftUI
+import FamilyControls
 
+@ViewAction(for: StartBlockingSession.self)
 public struct StartBlockingSessionView: View {
     public init(store: StoreOf<StartBlockingSession>) {
         self.store = store
     }
     
-    @Perception.Bindable var store: StoreOf<StartBlockingSession>
+    @Perception.Bindable public var store: StoreOf<StartBlockingSession>
     
     public var body: some View {
         WithPerceptionTracking {
@@ -33,12 +35,22 @@ public struct StartBlockingSessionView: View {
                                 .font(.headline)
                                 .foregroundStyle(.gray)
                         }
+                        HStack {
+                            ForEach(Array(store.activitySelection.applicationTokens), id: \.hashValue) {
+                                Label($0)
+                            }
+                        }
                     }
                     .sectionView()
+                    .onTapGesture {
+                        send(.onSelectAppsButtonTapped)
+                    }
                 }
                 .padding()
             }
             .background(AppTheme.Colors.accentColor.ignoresSafeArea())
+            .familyActivityPicker(isPresented: $store.isShowingActivityPicker,
+                                  selection: $store.activitySelection)
         }
     }
 }

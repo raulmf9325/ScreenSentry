@@ -19,6 +19,7 @@ struct ScreenSentryApp: App {
     var body: some Scene {
         WindowGroup {
             AppTabView(store: store)
+                .preferredColorScheme(.dark)
         }
     }
 }
