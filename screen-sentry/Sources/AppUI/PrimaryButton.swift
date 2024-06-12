@@ -5,11 +5,12 @@
 //  Created by Raul Mena on 6/10/24.
 //
 
-import AppUI
 import SwiftUI
 
-struct PrimaryButton: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
+public struct PrimaryButton: ButtonStyle {
+    public init() {}
+    
+    public func makeBody(configuration: Configuration) -> some View {
         HStack {
             Spacer()
             configuration.label

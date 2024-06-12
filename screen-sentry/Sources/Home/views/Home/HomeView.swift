@@ -9,6 +9,7 @@ import AppUI
 import ComposableArchitecture
 import SwiftUI
 import ScreenTimeAPI
+import StartBlockingSession
 
 public struct HomeView: View {
     @Perception.Bindable var store: StoreOf<Home>
@@ -38,14 +39,14 @@ public struct HomeView: View {
                 AppTheme.Colors.accentColor
                     .ignoresSafeArea()
             )
-        }
-        .onAppear {
-            store.send(.onHomeViewAppeared)
-        }
-        .sheet(
-            item: $store.scope(state: \.startBlockingSession, action: \.startBlockingSession)) { startBlockingSessionStore in
-                StartBlockingSessionView(store: startBlockingSessionStore)
+            .onAppear {
+                store.send(.onHomeViewAppeared)
             }
+            .sheet(
+                item: $store.scope(state: \.startBlockingSession, action: \.startBlockingSession)) { startBlockingSessionStore in
+                    StartBlockingSessionView(store: startBlockingSessionStore)
+                }
+        }
     }
     
     func requestScreenTimeAccess() {

@@ -5,10 +5,9 @@
 //  Created by Raul Mena on 6/10/24.
 //
 
-import AppUI
 import SwiftUI
 
-extension View {
+public extension View {
     func sectionView() -> some View {
         modifier(SectionView())
     }

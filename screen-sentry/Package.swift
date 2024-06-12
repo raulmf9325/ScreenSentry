@@ -11,6 +11,7 @@ let package = Package(
         .library(name: "AppCore", targets: ["AppCore"]),
         .library(name: "AppUI", targets: ["AppUI"]),
         .library(name: "Home", targets: ["Home"]),
+        .library(name: "StartBlockingSession", targets: ["StartBlockingSession"]),
         .library(name: "ScreenTimeAPI", targets: ["ScreenTimeAPI"]),
         .library(name: "ScreenTimeApiLive", targets: ["ScreenTimeApiLive"]),
     ],
@@ -27,6 +28,14 @@ let package = Package(
             ]),
         .target(
             name: "Home",
+            dependencies: [
+                "StartBlockingSession",
+                "AppUI",
+                "ScreenTimeAPI",
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+            ]),
+        .target(
+            name: "StartBlockingSession",
             dependencies: [
                 "AppUI",
                 "ScreenTimeAPI",
