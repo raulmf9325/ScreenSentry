@@ -16,10 +16,15 @@ extension View {
 
 struct SectionView: ViewModifier {
     func body(content: Content) -> some View {
-        content
-            .padding()
-            .background(
-                RoundedRectangle(cornerRadius: 10).fill(AppTheme.Colors.sectionViewColor)
-            )
+        HStack {
+            Spacer()
+            content
+                .padding(.vertical)
+                .padding(.horizontal, 10)
+            Spacer()
+        }
+        .background(
+            RoundedRectangle(cornerRadius: 10).fill(AppTheme.Colors.sectionViewColor)
+        )
     }
 }

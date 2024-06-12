@@ -15,12 +15,15 @@ public struct Home: Sendable {
         public init() {}
         
         var screenTimeAccess: ScreenTimeAccess = .notDetermined
+        @Presents var startBlockingSession: StartBlockingSession.State?
     }
     
     public enum Action: Sendable {
         case onHomeViewAppeared
         case requestScreenTimeApiAccess
         case screenTimeAccessResponse(ScreenTimeAccess)
+        case onStartBlockingSessionButtonTapped
+        case startBlockingSession(PresentationAction<StartBlockingSession.Action>)
     }
     
     public init() {}
@@ -46,7 +49,17 @@ public struct Home: Sendable {
             case let .screenTimeAccessResponse(access):
                 state.screenTimeAccess = access
                 return .none
+            
+            case .onStartBlockingSessionButtonTapped:
+                state.startBlockingSession = StartBlockingSession.State()
+                return .none
+                
+            case .startBlockingSession:
+                return .none
             }
+        }
+        .ifLet(\.$startBlockingSession, action: \.startBlockingSession) {
+            StartBlockingSession()
         }
     }
 }
