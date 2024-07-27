@@ -6,58 +6,39 @@
 //
 
 import AppUI
+import ComposableArchitecture
 import SwiftUI
 
 struct BlockContentView: View {
-    let onStartBlockingSessionButtonTapped: () -> Void
-    let onWorkModeButtonTapped: () -> Void
-    let onRelaxedMorningButtonTapped: () -> Void
-    
+    let store: StoreOf<Home>
+
+    init(_ store: StoreOf<Home>) {
+        self.store = store
+    }
+
     var body: some View {
         VStack(spacing: 20) {
-            StartSession(onTapGesture: onStartBlockingSessionButtonTapped)
+            StartSession(store)
             WorkMode()
             RelaxedMorning()
         }
     }
 }
 
-#Preview {
-    BlockContentView(onStartBlockingSessionButtonTapped: {},
-                     onWorkModeButtonTapped: {},
-                     onRelaxedMorningButtonTapped: {})
-}
-
 private struct StartSession: View {
-    let onTapGesture: () -> Void
-    
+    let store: StoreOf<Home>
+
+    init(_ store: StoreOf<Home>) {
+        self.store = store
+    }
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            HStack(spacing: 10) {
-                Image(systemName: "lock.app.dashed")
-                    .font(.title)
-                    .foregroundStyle(.white)
-                    .padding(5)
-                    .background(RoundedRectangle(cornerRadius: 8))
-                    .foregroundStyle(.blue)
-                
-                Text("Start Blocking Session")
-                    .foregroundStyle(.white)
-                    .font(.headline)
-                
-                Spacer()
-                
-                Text("+")
-                    .font(.headline)
-                    .foregroundStyle(.gray)
-            }
-            
-            Text("Start blocking apps and websites for a selected amount of time.")
-                .foregroundStyle(.gray)
-                .font(.headline)
-        }
-        .sectionView()
-        .onTapGesture(perform: onTapGesture)
+        ContentSectionView(imageName: "lock.app.dashed",
+                           imageColor: .blue,
+                           imageFont: .title,
+                           title: "Start Blocking Session",
+                           description: "Start blocking apps and websites for a selected amount of time.",
+                           onTap: { store.send(.onStartBlockingSessionButtonTapped) })
     }
 }
 
@@ -95,13 +76,13 @@ private struct RelaxedMorning: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 10) {
-                Image(systemName: "clock.fill")
-                    .font(.subheadline)
+                Image(systemName: "sun.max.fill")
+                    .font(.headline)
                     .foregroundStyle(.white)
                     .padding(8)
                     .background(RoundedRectangle(cornerRadius: 8))
-                    .foregroundStyle(.pink)
-                
+                    .foregroundStyle(.orange)
+
                 Text("Relaxed Morning")
                     .foregroundStyle(.white)
                     .font(.headline)
@@ -119,4 +100,15 @@ private struct RelaxedMorning: View {
         }
         .sectionView()
     }
+}
+
+#Preview {
+    BlockContentView(
+        Store(initialState: Home.State()) {
+            Home()
+        } withDependencies: {
+            $0.screenTimeApi.requestAccess = { @Sendable in
+                return .approved
+            }
+        } )
 }

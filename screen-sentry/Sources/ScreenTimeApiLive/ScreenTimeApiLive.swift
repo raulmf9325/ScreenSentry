@@ -11,7 +11,8 @@ import Foundation
 import ScreenTimeAPI
 
 extension ScreenTimeAPI: DependencyKey {
-    public static let liveValue = Self(requestAccess: requestScreenTimeAccess)
+    public static let liveValue = Self(requestAccess: requestScreenTimeAccess,
+                                       blockAdultContent: blockPornography)
 }
 
 @Sendable
@@ -29,4 +30,8 @@ func requestScreenTimeAccess() async throws -> ScreenTimeAccess {
     @unknown default:
         return .denied
     }
+}
+
+func blockPornography() {
+
 }

@@ -26,11 +26,7 @@ public struct HomeView: View {
                         PermissionDeniedView(onButtonTapped: requestScreenTimeAccess)
                         Spacer()
                     } else {
-                        BlockContentView(onStartBlockingSessionButtonTapped: {
-                            store.send(.onStartBlockingSessionButtonTapped)
-                        },
-                                         onWorkModeButtonTapped: {},
-                                         onRelaxedMorningButtonTapped: {})
+                        BlockContentView(store)
                     }
                 }
                 .padding(10)

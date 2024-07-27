@@ -12,6 +12,7 @@ import Foundation
 @DependencyClient
 public struct ScreenTimeAPI: Sendable {
     public var requestAccess: @Sendable () async throws -> ScreenTimeAccess
+    public var blockAdultContent: @Sendable () -> Void
 }
 
 public enum ScreenTimeAccess: Sendable {
