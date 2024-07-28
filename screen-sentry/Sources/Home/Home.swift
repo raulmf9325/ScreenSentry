@@ -16,6 +16,7 @@ public struct Home: Sendable {
         public init() {}
         
         var screenTimeAccess: ScreenTimeAccess = .notDetermined
+        var isBlockingAdultContent = false
         @Presents var startBlockingSession: StartBlockingSession.State?
     }
     
@@ -24,6 +25,8 @@ public struct Home: Sendable {
         case requestScreenTimeApiAccess
         case screenTimeAccessResponse(ScreenTimeAccess)
         case onStartBlockingSessionButtonTapped
+        case onBlockAdultContentTapped
+        case updateIsBlockingAdultContent
         case startBlockingSession(PresentationAction<StartBlockingSession.Action>)
     }
     
@@ -36,6 +39,7 @@ public struct Home: Sendable {
             switch action {
             case .onHomeViewAppeared:
                 return .send(.requestScreenTimeApiAccess)
+                       .merge(with: .send(.updateIsBlockingAdultContent))
 
             case .requestScreenTimeApiAccess:
                 return .run { send in
@@ -56,6 +60,14 @@ public struct Home: Sendable {
                 return .none
                 
             case .startBlockingSession:
+                return .none
+
+            case .onBlockAdultContentTapped:
+                screenTimeApi.blockAdultContent()
+                return .none
+
+            case .updateIsBlockingAdultContent:
+                state.isBlockingAdultContent = screenTimeApi.isBlockingAdultContent()
                 return .none
             }
         }

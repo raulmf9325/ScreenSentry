@@ -13,6 +13,8 @@ import Foundation
 public struct ScreenTimeAPI: Sendable {
     public var requestAccess: @Sendable () async throws -> ScreenTimeAccess
     public var blockAdultContent: @Sendable () -> Void
+    public var unblockAdultContent: @Sendable () -> Void
+    public var isBlockingAdultContent: @Sendable () -> Bool = { false }
 }
 
 public enum ScreenTimeAccess: Sendable {

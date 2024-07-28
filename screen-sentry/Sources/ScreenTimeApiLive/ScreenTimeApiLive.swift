@@ -8,11 +8,14 @@
 import Dependencies
 import FamilyControls
 import Foundation
+import ManagedSettings
 import ScreenTimeAPI
 
 extension ScreenTimeAPI: DependencyKey {
     public static let liveValue = Self(requestAccess: requestScreenTimeAccess,
-                                       blockAdultContent: blockPornography)
+                                       blockAdultContent: blockPornography,
+                                       unblockAdultContent: unblockPornography,
+                                       isBlockingAdultContent: isBlockingPornography)
 }
 
 @Sendable
@@ -32,6 +35,20 @@ func requestScreenTimeAccess() async throws -> ScreenTimeAccess {
     }
 }
 
+@Sendable
 func blockPornography() {
+    let store = ManagedSettingsStore()
+    store.webContent.blockedByFilter = .auto([], except: [])
+}
 
+@Sendable
+func unblockPornography() {
+    let store = ManagedSettingsStore()
+    store.webContent.blockedByFilter = nil
+}
+
+@Sendable
+func isBlockingPornography() -> Bool {
+    let store = ManagedSettingsStore()
+    return store.webContent.blockedByFilter != nil
 }
