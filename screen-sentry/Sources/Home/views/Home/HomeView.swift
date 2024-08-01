@@ -20,24 +20,17 @@ public struct HomeView: View {
     
     public var body: some View {
         WithPerceptionTracking {
-            ScrollView {
-                VStack {
-                    if store.screenTimeAccess == .denied {
-                        PermissionDeniedView(onButtonTapped: requestScreenTimeAccess)
-                        Spacer()
-                    } else {
-                        BlockContentView(store)
-                    }
+            VStack {
+                if store.screenTimeAccess == .denied {
+                    PermissionDeniedView(onButtonTapped: requestScreenTimeAccess)
+                    Spacer()
+                } else {
+                    BlockContentView(store)
                 }
-                .padding(10)
             }
-            .background(
-                AppTheme.Colors.accentColor
-                    .ignoresSafeArea()
-            )
-            .onAppear {
-                store.send(.onHomeViewAppeared)
-            }
+            .padding(10)
+            .background(AppTheme.Colors.accentColor.ignoresSafeArea())
+            .onAppear { store.send(.onHomeViewAppeared) }
             .sheet(
                 item: $store.scope(state: \.startBlockingSession, action: \.startBlockingSession)) { startBlockingSessionStore in
                     StartBlockingSessionView(store: startBlockingSessionStore)
@@ -55,8 +48,11 @@ public struct HomeView: View {
     HomeView(store: Store(initialState: Home.State()) {
         Home()
     } withDependencies: {
-        $0.screenTimeApi.requestAccess = { @Sendable in
+        $0.screenTimeApi.requestAccess = {
             return .approved
+        }
+        $0.screenTimeApi.isBlockingAdultContent = {
+            return true
         }
     } )
 }

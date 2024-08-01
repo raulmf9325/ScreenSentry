@@ -10,7 +10,7 @@ import FamilyControls
 import ScreenTimeAPI
 
 @Reducer
-public struct StartBlockingSession: Sendable {
+public struct StartBlockingSession {
     @ObservableState
     public struct State: Equatable {
         public init() {}
@@ -22,11 +22,11 @@ public struct StartBlockingSession: Sendable {
     }
     
     
-    public enum Action: ViewAction, Sendable {
+    public enum Action: ViewAction {
         case view(View)
         
         @CasePathable
-        public enum View: BindableAction, Sendable {
+        public enum View: BindableAction {
           case onSelectAppsButtonTapped
           case binding(BindingAction<State>)
         }

@@ -17,12 +17,22 @@ struct BlockContentView: View {
     }
 
     var body: some View {
-        VStack(spacing: 20) {
-            StartSession(store)
-            WorkMode()
-            RelaxedMorning()
-            AdultContent(store)
+        List {
+            Section {
+                StartSession(store)
+                    .swipeActions {
+                        Button(action: {}) {
+                            Label("Read", systemImage: "envelope.badge.fill")
+                        }
+                        .tint(Color.red)
+                    }
+                WorkMode()
+                RelaxedMorning()
+                AdultContent(store)
+            }
         }
+        .scrollContentBackground(.hidden)
+        .listStyle(.insetGrouped)
     }
 }
 
@@ -87,7 +97,7 @@ private struct AdultContent: View {
         Store(initialState: Home.State()) {
             Home()
         } withDependencies: {
-            $0.screenTimeApi.requestAccess = { @Sendable in
+            $0.screenTimeApi.requestAccess = {
                 return .approved
             }
         } )

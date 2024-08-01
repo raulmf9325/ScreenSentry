@@ -16,8 +16,8 @@ let package = Package(
         .library(name: "ScreenTimeApiLive", targets: ["ScreenTimeApiLive"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.10.4"),
-        .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.3.0"),
+        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.12.1"),
+        .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.3.6"),
     ],
     targets: [
         .target(

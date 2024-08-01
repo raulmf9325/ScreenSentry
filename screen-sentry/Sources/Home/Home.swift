@@ -10,17 +10,23 @@ import ScreenTimeAPI
 import StartBlockingSession
 
 @Reducer
-public struct Home: Sendable {
+public struct Home {
     @ObservableState
     public struct State: Equatable {
-        public init() {}
-        
-        var screenTimeAccess: ScreenTimeAccess = .notDetermined
-        var isBlockingAdultContent = false
+        public init(
+            screenTimeAccess: ScreenTimeAccess = .notDetermined,
+            isBlockingAdultContent: Bool = false
+        ) {
+            self.screenTimeAccess = screenTimeAccess
+            self.isBlockingAdultContent = isBlockingAdultContent
+        }
+
+        var screenTimeAccess: ScreenTimeAccess
+        var isBlockingAdultContent: Bool
         @Presents var startBlockingSession: StartBlockingSession.State?
     }
     
-    public enum Action: Sendable {
+    public enum Action {
         case onHomeViewAppeared
         case requestScreenTimeApiAccess
         case screenTimeAccessResponse(ScreenTimeAccess)

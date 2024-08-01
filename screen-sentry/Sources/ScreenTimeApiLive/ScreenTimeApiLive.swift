@@ -18,7 +18,6 @@ extension ScreenTimeAPI: DependencyKey {
                                        isBlockingAdultContent: isBlockingPornography)
 }
 
-@Sendable
 func requestScreenTimeAccess() async throws -> ScreenTimeAccess {
     let authCenter = AuthorizationCenter.shared
     try await authCenter.requestAuthorization(for: .individual)
@@ -35,19 +34,16 @@ func requestScreenTimeAccess() async throws -> ScreenTimeAccess {
     }
 }
 
-@Sendable
 func blockPornography() {
     let store = ManagedSettingsStore()
     store.webContent.blockedByFilter = .auto([], except: [])
 }
 
-@Sendable
 func unblockPornography() {
     let store = ManagedSettingsStore()
     store.webContent.blockedByFilter = nil
 }
 
-@Sendable
 func isBlockingPornography() -> Bool {
     let store = ManagedSettingsStore()
     return store.webContent.blockedByFilter != nil

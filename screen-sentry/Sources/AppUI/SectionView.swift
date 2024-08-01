@@ -22,8 +22,6 @@ struct SectionView: ViewModifier {
                 .padding(.horizontal, 10)
             Spacer()
         }
-        .background(
-            RoundedRectangle(cornerRadius: 10).fill(AppTheme.Colors.sectionViewColor)
-        )
+        .background(AppTheme.Colors.sectionViewColor)
     }
 }

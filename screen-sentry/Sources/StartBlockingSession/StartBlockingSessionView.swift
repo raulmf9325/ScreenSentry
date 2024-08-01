@@ -59,7 +59,7 @@ public struct StartBlockingSessionView: View {
     StartBlockingSessionView(store: Store(initialState: StartBlockingSession.State()) {
         StartBlockingSession()
     } withDependencies: {
-        $0.screenTimeApi.requestAccess = { @Sendable in
+        $0.screenTimeApi.requestAccess = {
             return .approved
         }
     } )
