@@ -25,15 +25,15 @@ public struct HomeView: View {
                     PermissionDeniedView(onButtonTapped: requestScreenTimeAccess)
                     Spacer()
                 } else {
-                    BlockContentView(store)
+                    BlockContentView(store: store)
                 }
             }
             .padding(10)
             .background(AppTheme.Colors.accentColor.ignoresSafeArea())
-            .onAppear { store.send(.onHomeViewAppeared) }
+            .onAppear { store.send(.view(.homeViewAppeared)) }
             .sheet(
-                item: $store.scope(state: \.startBlockingSession, action: \.startBlockingSession)) { startBlockingSessionStore in
-                    StartBlockingSessionView(store: startBlockingSessionStore)
+                item: $store.scope(state: \.destination?.startBlockingSession, action: \.destination.startBlockingSession)) { store in
+                    StartBlockingSessionView(store: store)
                 }
         }
     }

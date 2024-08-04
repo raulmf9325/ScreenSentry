@@ -13,7 +13,7 @@ import ScreenTimeApiLive
 @main
 struct ScreenSentryApp: App {
     let store = Store(initialState: ScreenSentry.State()) {
-        ScreenSentry()
+        ScreenSentry()._printChanges()
     }
     
     var body: some Scene {

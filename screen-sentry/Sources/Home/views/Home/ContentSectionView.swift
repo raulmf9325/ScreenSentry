@@ -27,7 +27,6 @@ struct ContentSectionView: View {
 
                 Text(title)
                     .foregroundStyle(.white)
-                    .font(.headline)
 
                 Spacer()
 
@@ -38,9 +37,9 @@ struct ContentSectionView: View {
 
             Text(description)
                 .foregroundStyle(.gray)
-                .font(.headline)
+                .font(.callout)
         }
-        .padding(.vertical)
+        .padding(.vertical, 10)
         .sectionView()
         .listRowBackground(Color.clear)
         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
