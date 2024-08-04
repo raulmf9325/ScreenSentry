@@ -10,7 +10,7 @@ import ComposableArchitecture
 import SwiftUI
 
 struct BlockContentView: View {
-    let store: StoreOf<Home>
+    @Perception.Bindable var store: StoreOf<Home>
 
     var body: some View {
         WithPerceptionTracking {
@@ -23,6 +23,18 @@ struct BlockContentView: View {
             }
             .scrollContentBackground(.hidden)
             .listStyle(.insetGrouped)
+            .sheet(item: $store.scope(state: \.destination?.pauseOrDeleteAdultBlockingConfirmation, action: \.destination.pauseOrDeleteAdultBlockingConfirmation)) { _ in
+                confirmPauseOrDeleteAdultSession
+            }
+        }
+    }
+
+    var confirmPauseOrDeleteAdultSession: some View {
+        WithPerceptionTracking {
+            PauseOrDeleteAdultBlockingSessionView(onPauseButtonTapped: { store.send(.view(.pauseBlockingAdultContentButtonTapped)) },
+                                                  onDelteButtonTapped: { store.send(.view(.deleteBlockingAdultContentButtonTapped)) })
+            .presentationDetents([.fraction(1/2)])
+            .presentationDragIndicator(.visible)
         }
     }
 }

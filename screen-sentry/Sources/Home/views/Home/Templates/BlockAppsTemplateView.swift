@@ -40,7 +40,7 @@ private struct StartSession: View {
 
     var body: some View {
         WithPerceptionTracking {
-            ContentSectionView(imageName: "lock.app.dashed",
+            ContentSectionView(emoji: "⏱️",
                                imageColor: .blue,
                                imageFont: .title2,
                                title: "Start Blocking Session",
@@ -53,7 +53,7 @@ private struct StartSession: View {
 private struct WorkMode: View {
     var body: some View {
         WithPerceptionTracking {
-            ContentSectionView(imageName: "desktopcomputer",
+            ContentSectionView(emoji: "💻",
                                imageColor: .green,
                                imageFont: .headline,
                                title: "Work Mode",
@@ -66,7 +66,7 @@ private struct WorkMode: View {
 private struct RelaxedMorning: View {
     var body: some View {
         WithPerceptionTracking {
-            ContentSectionView(imageName: "sun.max.fill",
+            ContentSectionView(emoji: "🌞",
                                imageColor: .orange,
                                imageFont: .headline,
                                title: "Relaxed Morning",
@@ -85,12 +85,12 @@ private struct AdultContent: View {
 
     var body: some View {
         WithPerceptionTracking {
-            ContentSectionView(imageName: "18.circle",
+            ContentSectionView(emoji: "🔞",
                                imageColor: .red,
                                imageFont: .title3,
                                title: "Block Adult Content",
                                description: "Block porn websites to regain focus and mental clarity",
-                               onTap: { store.send(.view(.blockAdultContentButtonTapped)) })
+                               onTap: { store.send(.view(.templateAdultContentButtonTapped)) })
         }
     }
 }

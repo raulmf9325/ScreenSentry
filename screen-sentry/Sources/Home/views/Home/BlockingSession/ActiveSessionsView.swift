@@ -26,8 +26,13 @@ struct ActiveSessionsView: View {
     }
 
     var adultContentView: some View {
-        BlockingAdultContentView(onPauseButtonTapped: { store.send(.view(.pauseBlockingAdultContentButtonTapped)) },
-                                 onDeleteButtonTapped: { store.send(.view(.deleteBlockingAdultContentButtonTapped)) })
+        WithPerceptionTracking {
+            BlockingAdultContentView(onPauseButtonTapped: { store.send(.view(.pauseBlockingAdultContentButtonTapped)) },
+                                     onDeleteButtonTapped: { store.send(.view(.deleteBlockingAdultContentButtonTapped)) })
+            .onTapGesture {
+                store.send(.view(.activeAdultBlockingButtonTapped))
+            }
+        }
     }
 }
 

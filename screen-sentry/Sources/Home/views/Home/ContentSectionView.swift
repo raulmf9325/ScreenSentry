@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentSectionView: View {
-    let imageName: String
+    let emoji: String
     let imageColor: Color
     let imageFont: Font
     let title: String
@@ -18,12 +18,8 @@ struct ContentSectionView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 10) {
-                Image(systemName: imageName)
-                    .font(imageFont)
-                    .foregroundStyle(.white)
-                    .padding(8)
-                    .background(RoundedRectangle(cornerRadius: 8))
-                    .foregroundStyle(imageColor)
+                Text(emoji)
+                    .font(.title)
 
                 Text(title)
                     .foregroundStyle(.white)
@@ -48,7 +44,7 @@ struct ContentSectionView: View {
 }
 
 #Preview {
-    ContentSectionView(imageName: "sun.max.fill",
+    ContentSectionView(emoji: "🌞",
                        imageColor: .orange,
                        imageFont: .headline,
                        title: "Relaxed Morning",

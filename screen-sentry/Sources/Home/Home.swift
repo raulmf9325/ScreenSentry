@@ -28,12 +28,13 @@ public struct Home {
         case updateIsBlockingAdultContent
         case destination(PresentationAction<Destination.Action>)
     }
-
+    
     @CasePathable
     public enum View {
         case homeViewAppeared
         case startBlockingSessionButtonTapped
-        case blockAdultContentButtonTapped
+        case templateAdultContentButtonTapped
+        case activeAdultBlockingButtonTapped
         case pauseBlockingAdultContentButtonTapped
         case deleteBlockingAdultContentButtonTapped
     }
@@ -41,6 +42,7 @@ public struct Home {
     @Reducer(state: .equatable)
     public enum Destination {
         case startBlockingSession(StartBlockingSession)
+        case pauseOrDeleteAdultBlockingConfirmation
     }
     
     @Dependency(\.screenTimeApi) var screenTimeApi
@@ -50,7 +52,7 @@ public struct Home {
             switch action {
             case .view(.homeViewAppeared):
                 return .send(.requestScreenTimeApiAccess)
-                       .merge(with: .send(.updateIsBlockingAdultContent))
+                    .merge(with: .send(.updateIsBlockingAdultContent))
 
             case .requestScreenTimeApiAccess:
                 return .run { send in
@@ -65,16 +67,20 @@ public struct Home {
             case let .screenTimeAccessResponse(access):
                 state.screenTimeAccess = access
                 return .none
-            
+
             case .view(.startBlockingSessionButtonTapped):
                 state.destination = .startBlockingSession(StartBlockingSession.State())
                 return .none
 
-            case .view(.blockAdultContentButtonTapped):
+            case .view(.templateAdultContentButtonTapped):
                 return .run { send in
                     screenTimeApi.blockAdultContent()
                     await send(.updateIsBlockingAdultContent, animation: .linear)
                 }
+
+            case .view(.activeAdultBlockingButtonTapped):
+                state.destination = .pauseOrDeleteAdultBlockingConfirmation
+                return .none
 
             case .view(.pauseBlockingAdultContentButtonTapped), .view(.deleteBlockingAdultContentButtonTapped):
                 return .run { send in
