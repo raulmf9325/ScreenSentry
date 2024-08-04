@@ -13,12 +13,17 @@ struct BlockContentView: View {
     let store: StoreOf<Home>
 
     var body: some View {
-        List {
-            ActiveSessionsView(store: store)
-            BlockAppsTemplateView(store: store)
+        WithPerceptionTracking {
+            List {
+                if store.isBlockingAdultContent {
+                    ActiveSessionsView(store: store)
+                        .transition(.move(edge: .leading))
+                }
+                BlockAppsTemplateView(store: store)
+            }
+            .scrollContentBackground(.hidden)
+            .listStyle(.insetGrouped)
         }
-        .scrollContentBackground(.hidden)
-        .listStyle(.insetGrouped)
     }
 }
 

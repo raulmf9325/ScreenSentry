@@ -73,13 +73,13 @@ public struct Home {
             case .view(.blockAdultContentButtonTapped):
                 return .run { send in
                     screenTimeApi.blockAdultContent()
-                    await send(.updateIsBlockingAdultContent)
+                    await send(.updateIsBlockingAdultContent, animation: .linear)
                 }
 
             case .view(.pauseBlockingAdultContentButtonTapped), .view(.deleteBlockingAdultContentButtonTapped):
                 return .run { send in
                     screenTimeApi.unblockAdultContent()
-                    await send(.updateIsBlockingAdultContent)
+                    await send(.updateIsBlockingAdultContent, animation: .linear)
                 }
 
             case .updateIsBlockingAdultContent:

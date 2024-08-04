@@ -12,13 +12,15 @@ struct ActiveSessionsView: View {
     let store: StoreOf<Home>
 
     var body: some View {
-        Section(header:
-                    Text("Active Sessions")
-            .foregroundStyle(.gray)
-            .font(.subheadline)
-        ) {
-            if store.isBlockingAdultContent {
-                adultContentView
+        WithPerceptionTracking {
+            Section(header:
+                        Text("Active Sessions")
+                .foregroundStyle(.gray)
+                .font(.subheadline)
+            ) {
+                if store.isBlockingAdultContent {
+                    adultContentView
+                }
             }
         }
     }
