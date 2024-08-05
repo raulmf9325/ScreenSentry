@@ -26,8 +26,9 @@ struct ContentSectionView: View {
 
                 Spacer()
 
-                Text("+")
-                    .font(.headline)
+                Image(systemName: "chevron.right")
+                    .font(.caption)
+                    .bold()
                     .foregroundStyle(.gray)
             }
 

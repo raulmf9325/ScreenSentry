@@ -23,8 +23,12 @@ struct BlockContentView: View {
             }
             .scrollContentBackground(.hidden)
             .listStyle(.insetGrouped)
-            .sheet(item: $store.scope(state: \.destination?.pauseOrDeleteAdultBlockingConfirmation, action: \.destination.pauseOrDeleteAdultBlockingConfirmation)) { _ in
+            .sheet(item: $store.scope(state: \.destination?.confirmPauseResumeDeleteAdultContent, action: \.destination.confirmPauseResumeDeleteAdultContent)) { _ in
                 confirmPauseOrDeleteAdultSession
+            }
+            .sheet(item: $store.scope(state: \.destination?.confirmStartBlockingAdultContent, 
+                                      action: \.destination.confirmStartBlockingAdultContent)) { _ in
+                confirmStartBlockingAdultContent
             }
         }
     }
@@ -35,6 +39,14 @@ struct BlockContentView: View {
                                                   onDelteButtonTapped: { store.send(.view(.deleteBlockingAdultContentButtonTapped)) })
             .presentationDetents([.fraction(1/2)])
             .presentationDragIndicator(.visible)
+        }
+    }
+
+    var confirmStartBlockingAdultContent: some View {
+        WithPerceptionTracking {
+            ConfirmStartBlockingAdultContentView(onStartButtonTapped: { store.send(.view(.confirmStartBlockingAdultContentButtonTapped)) })
+                .presentationDetents([.fraction(1/2)])
+                .presentationDragIndicator(.visible)
         }
     }
 }

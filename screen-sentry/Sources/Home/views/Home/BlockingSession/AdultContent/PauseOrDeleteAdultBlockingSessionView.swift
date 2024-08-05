@@ -12,7 +12,7 @@ struct PauseOrDeleteAdultBlockingSessionView: View {
     let onPauseButtonTapped: () -> Void
     let onDelteButtonTapped: () -> Void
 
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack {
@@ -20,6 +20,11 @@ struct PauseOrDeleteAdultBlockingSessionView: View {
                 .font(.title3)
                 .foregroundStyle(Color.white)
                 .multilineTextAlignment(.center)
+                .padding(.top)
+
+            Text("Pausing the session will unblock adult content temporarily. Deleting the session will unblock it permanently.")
+                .font(.callout)
+                .foregroundStyle(Color.gray)
                 .padding(.top)
 
             Spacer()
@@ -34,31 +39,19 @@ struct PauseOrDeleteAdultBlockingSessionView: View {
     }
 
     var pauseButton: some View {
-        Button(action: {
+        Button("Pause") {
             onPauseButtonTapped()
             dismiss()
-        },
-               label: {
-            Text("Pause")
-                .font(.headline)
-                .foregroundStyle(AppTheme.Colors.sectionViewColor)
-                .padding(.vertical)
-                .frame(maxWidth: .infinity)
-                .background(Color.white)
-                .clipShape(Capsule())
-        })
+        }
+        .buttonStyle(CapsuleButtonStyle())
     }
 
     var deleteButton: some View {
-        Button(action: onDelteButtonTapped) {
-            Text("Delete")
-                .font(.headline)
-                .foregroundStyle(.white)
-                .padding(.vertical)
-                .frame(maxWidth: .infinity)
-                .background(Color.red)
-                .clipShape(Capsule())
+        Button("Delete") {
+            onDelteButtonTapped()
+            dismiss()
         }
+        .buttonStyle(CapsuleButtonStyle(textColor: .white, backgroundColor: .red))
     }
 }
 

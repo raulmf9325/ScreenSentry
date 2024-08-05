@@ -34,6 +34,7 @@ public struct Home {
         case homeViewAppeared
         case startBlockingSessionButtonTapped
         case templateAdultContentButtonTapped
+        case confirmStartBlockingAdultContentButtonTapped
         case activeAdultBlockingButtonTapped
         case pauseBlockingAdultContentButtonTapped
         case deleteBlockingAdultContentButtonTapped
@@ -42,7 +43,8 @@ public struct Home {
     @Reducer(state: .equatable)
     public enum Destination {
         case startBlockingSession(StartBlockingSession)
-        case pauseOrDeleteAdultBlockingConfirmation
+        case confirmPauseResumeDeleteAdultContent
+        case confirmStartBlockingAdultContent
     }
     
     @Dependency(\.screenTimeApi) var screenTimeApi
@@ -73,13 +75,17 @@ public struct Home {
                 return .none
 
             case .view(.templateAdultContentButtonTapped):
+                state.destination = .confirmStartBlockingAdultContent
+                return .none
+
+            case .view(.confirmStartBlockingAdultContentButtonTapped):
                 return .run { send in
                     screenTimeApi.blockAdultContent()
                     await send(.updateIsBlockingAdultContent, animation: .linear)
                 }
 
             case .view(.activeAdultBlockingButtonTapped):
-                state.destination = .pauseOrDeleteAdultBlockingConfirmation
+                state.destination = .confirmPauseResumeDeleteAdultContent
                 return .none
 
             case .view(.pauseBlockingAdultContentButtonTapped), .view(.deleteBlockingAdultContentButtonTapped):
