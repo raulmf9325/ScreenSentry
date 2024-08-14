@@ -26,9 +26,11 @@ struct BlockContentView: View {
             .sheet(item: $store.scope(state: \.destination?.confirmPauseResumeDeleteAdultContent, action: \.destination.confirmPauseResumeDeleteAdultContent)) { _ in
                 confirmPauseOrDeleteAdultSession
             }
-            .sheet(item: $store.scope(state: \.destination?.confirmStartBlockingAdultContent, 
-                                      action: \.destination.confirmStartBlockingAdultContent)) { _ in
-                confirmStartBlockingAdultContent
+            .sheet(item: $store.scope(state: \.destination?.confirmStartBlockingAdultContent,
+                                      action: \.destination.confirmStartBlockingAdultContent)) { store in
+                ConfirmStartBlockingAdultContentView(store: store)
+                .presentationDetents([.fraction(1/2)])
+                .presentationDragIndicator(.visible)
             }
         }
     }
@@ -41,23 +43,15 @@ struct BlockContentView: View {
             .presentationDragIndicator(.visible)
         }
     }
-
-    var confirmStartBlockingAdultContent: some View {
-        WithPerceptionTracking {
-            ConfirmStartBlockingAdultContentView(onStartButtonTapped: { store.send(.view(.confirmStartBlockingAdultContentButtonTapped)) })
-                .presentationDetents([.fraction(1/2)])
-                .presentationDragIndicator(.visible)
-        }
-    }
 }
 
 #Preview {
     BlockContentView(store:
-        Store(initialState: Home.State()) {
-            Home()
-        } withDependencies: {
-            $0.screenTimeApi.requestAccess = {
-                return .approved
-            }
-        } )
+                        Store(initialState: Home.State()) {
+        Home()
+    } withDependencies: {
+        $0.screenTimeApi.requestAccess = {
+            return .approved
+        }
+    } )
 }

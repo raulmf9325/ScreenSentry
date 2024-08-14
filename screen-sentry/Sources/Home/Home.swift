@@ -25,6 +25,7 @@ public struct Home {
         case view(View)
         case requestScreenTimeApiAccess
         case screenTimeAccessResponse(ScreenTimeAccess)
+        case startBlockingAdultContent(selectedNumber: Int, selectedTimeUnit: TimeUnit)
         case updateIsBlockingAdultContent
         case destination(PresentationAction<Destination.Action>)
     }
@@ -34,7 +35,6 @@ public struct Home {
         case homeViewAppeared
         case startBlockingSessionButtonTapped
         case templateAdultContentButtonTapped
-        case confirmStartBlockingAdultContentButtonTapped
         case activeAdultBlockingButtonTapped
         case pauseBlockingAdultContentButtonTapped
         case deleteBlockingAdultContentButtonTapped
@@ -44,7 +44,7 @@ public struct Home {
     public enum Destination {
         case startBlockingSession(StartBlockingSession)
         case confirmPauseResumeDeleteAdultContent
-        case confirmStartBlockingAdultContent
+        case confirmStartBlockingAdultContent(AdultBlockingSession)
     }
     
     @Dependency(\.screenTimeApi) var screenTimeApi
@@ -75,10 +75,10 @@ public struct Home {
                 return .none
 
             case .view(.templateAdultContentButtonTapped):
-                state.destination = .confirmStartBlockingAdultContent
+                state.destination = .confirmStartBlockingAdultContent(AdultBlockingSession.State())
                 return .none
 
-            case .view(.confirmStartBlockingAdultContentButtonTapped):
+            case let .startBlockingAdultContent(selectedNumber, selectedTimeUnit):
                 return .run { send in
                     screenTimeApi.blockAdultContent()
                     await send(.updateIsBlockingAdultContent, animation: .linear)
@@ -97,7 +97,10 @@ public struct Home {
             case .updateIsBlockingAdultContent:
                 state.isBlockingAdultContent = screenTimeApi.isBlockingAdultContent()
                 return .none
-            
+
+            case let .destination(.presented(.confirmStartBlockingAdultContent(.delegate(.startAdultBlockingSession(selectedNumber, selectedTimeUnit))))):
+                return .send(.startBlockingAdultContent(selectedNumber: selectedNumber, selectedTimeUnit: selectedTimeUnit))
+
             case .destination:
                 return .none
             }
