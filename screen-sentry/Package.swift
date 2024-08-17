@@ -11,9 +11,13 @@ let package = Package(
         .library(name: "AppCore", targets: ["AppCore"]),
         .library(name: "AppUI", targets: ["AppUI"]),
         .library(name: "Home", targets: ["Home"]),
+        .library(name: "AdultContent", targets: ["AdultContent"]),
         .library(name: "StartBlockingSession", targets: ["StartBlockingSession"]),
         .library(name: "ScreenTimeAPI", targets: ["ScreenTimeAPI"]),
         .library(name: "ScreenTimeApiLive", targets: ["ScreenTimeApiLive"]),
+        .library(name: "LocalNotificationsAPI", targets: ["LocalNotificationsAPI"]),
+        .library(name: "LocalNotificationsApiLive", targets: ["LocalNotificationsApiLive"]),
+        .library(name: "CountdownTimer", targets: ["CountdownTimer"]),
     ],
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.12.1"),
@@ -30,8 +34,17 @@ let package = Package(
             name: "Home",
             dependencies: [
                 "StartBlockingSession",
+                "AdultContent",
                 "AppUI",
                 "ScreenTimeAPI",
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+            ]),
+        .target(
+            name: "AdultContent",
+            dependencies: [
+                "AppUI",
+                "ScreenTimeAPI",
+                "CountdownTimer",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
             ]),
         .target(
@@ -46,25 +59,43 @@ let package = Package(
         .target(
             name: "ScreenTimeAPI",
             dependencies: [
-              .product(name: "Dependencies", package: "swift-dependencies"),
-              .product(name: "DependenciesMacros", package: "swift-dependencies"),
+                .product(name: "Dependencies", package: "swift-dependencies"),
+                .product(name: "DependenciesMacros", package: "swift-dependencies"),
             ]
         ),
         .target(
             name: "ScreenTimeApiLive",
-        dependencies: [
-            "ScreenTimeAPI",
-            .product(name: "Dependencies", package: "swift-dependencies")
-        ]),
-        
+            dependencies: [
+                "ScreenTimeAPI",
+                .product(name: "Dependencies", package: "swift-dependencies")
+            ]),
+        .target(
+            name: "LocalNotificationsAPI",
+            dependencies: [
+                .product(name: "Dependencies", package: "swift-dependencies"),
+                .product(name: "DependenciesMacros", package: "swift-dependencies"),
+            ]
+        ),
+        .target(
+            name: "LocalNotificationsApiLive",
+            dependencies: [
+                "LocalNotificationsAPI",
+                .product(name: "Dependencies", package: "swift-dependencies")
+            ]),
+        .target(
+            name: "CountdownTimer",
+            dependencies: [
+                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
+            ]
+        ),
     ]
 )
 
 for target in package.targets {
-  target.swiftSettings = [
-    .unsafeFlags([
-      "-Xfrontend", "-enable-actor-data-race-checks",
-      "-Xfrontend", "-warn-concurrency",
-    ])
-  ]
+    target.swiftSettings = [
+        .unsafeFlags([
+            "-Xfrontend", "-enable-actor-data-race-checks",
+            "-Xfrontend", "-warn-concurrency",
+        ])
+    ]
 }

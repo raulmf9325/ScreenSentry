@@ -6,15 +6,14 @@
 //
 
 import AppUI
+import ComposableArchitecture
 import SwiftUI
 
 struct PauseOrDeleteAdultBlockingSessionView: View {
-    let onPauseButtonTapped: () -> Void
-    let onDelteButtonTapped: () -> Void
-
+    let store: StoreOf<AdultBlockingSession>
     @Environment(\.dismiss) private var dismiss
 
-    var body: some View {
+     var body: some View {
         VStack {
             Text("Momentarily pause or permanently delete this session.")
                 .font(.title3)
@@ -40,22 +39,23 @@ struct PauseOrDeleteAdultBlockingSessionView: View {
 
     var pauseButton: some View {
         Button("Pause") {
-            onPauseButtonTapped()
             dismiss()
+            store.send(.view(.pauseBlockingAdultContentButtonTapped))
         }
         .buttonStyle(CapsuleButtonStyle())
     }
 
     var deleteButton: some View {
         Button("Delete") {
-            onDelteButtonTapped()
             dismiss()
+            store.send(.view(.deleteBlockingAdultContentButtonTapped))
         }
         .buttonStyle(CapsuleButtonStyle(textColor: .white, backgroundColor: .red))
     }
 }
 
 #Preview {
-    PauseOrDeleteAdultBlockingSessionView(onPauseButtonTapped: {},
-                                          onDelteButtonTapped: {})
+    PauseOrDeleteAdultBlockingSessionView(store: Store(initialState: AdultBlockingSession.State()) {
+        AdultBlockingSession()
+    })
 }

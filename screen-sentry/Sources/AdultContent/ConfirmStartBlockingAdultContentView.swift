@@ -9,12 +9,16 @@ import AppUI
 import ComposableArchitecture
 import SwiftUI
 
-struct ConfirmStartBlockingAdultContentView: View {
+public struct ConfirmStartBlockingAdultContentView: View {
+    public init(store: StoreOf<AdultBlockingSession>) {
+        self.store = store
+    }
+    
     @Perception.Bindable var store: StoreOf<AdultBlockingSession>
 
     @Environment(\.dismiss) private var dismiss
 
-    var body: some View {
+    public var body: some View {
         WithPerceptionTracking {
             VStack {
                 Text("Adult websites will be blocked on all browsers")

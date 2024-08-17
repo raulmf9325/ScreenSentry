@@ -5,11 +5,12 @@
 //  Created by Raul Mena on 8/1/24.
 //
 
+import AdultContent
 import ComposableArchitecture
 import SwiftUI
 
 struct ActiveSessionsView: View {
-    let store: StoreOf<Home>
+    @Perception.Bindable var store: StoreOf<Home>
 
     var body: some View {
         WithPerceptionTracking {
@@ -18,19 +19,9 @@ struct ActiveSessionsView: View {
                 .foregroundStyle(.gray)
                 .font(.subheadline)
             ) {
-                if store.isBlockingAdultContent {
-                    adultContentView
+                IfLetStore(store.scope(state: \.adultBlockingSession, action: \.adultBlockingSession)) { store in
+                    BlockingAdultContentView(store: store)
                 }
-            }
-        }
-    }
-
-    var adultContentView: some View {
-        WithPerceptionTracking {
-            BlockingAdultContentView(onPauseButtonTapped: { store.send(.view(.pauseBlockingAdultContentButtonTapped)) },
-                                     onDeleteButtonTapped: { store.send(.view(.deleteBlockingAdultContentButtonTapped)) })
-            .onTapGesture {
-                store.send(.view(.activeAdultBlockingButtonTapped))
             }
         }
     }

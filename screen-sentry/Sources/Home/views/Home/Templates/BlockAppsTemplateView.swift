@@ -22,9 +22,8 @@ struct BlockAppsTemplateView: View {
                 WorkMode()
                 RelaxedMorning()
                 
-                if !store.isBlockingAdultContent {
+                if store.adultBlockingSession == nil {
                     AdultContent(store)
-                        .transition(.move(edge: .leading))
                 }
             }
         }
