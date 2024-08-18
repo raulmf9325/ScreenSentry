@@ -18,7 +18,7 @@ public struct BlockingAdultContentView: View {
     public var body: some View {
         WithPerceptionTracking {
             HStack {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 10) {
                     HStack {
                         Text("🔞")
                             .font(.system(size: 30))
@@ -27,16 +27,17 @@ public struct BlockingAdultContentView: View {
                             .foregroundStyle(.white)
                     }
 
-                    Text("All the time")
+                    Text(store.timerLabel)
                         .foregroundStyle(.white)
                         .font(.caption)
                         .italic()
+                        .monospacedDigit()
                         .padding(.leading, 10)
                 }
                 Spacer()
                 Text("⏳")
             }
-            .padding(.vertical, 10)
+            .padding(.vertical, 6)
             .sectionView()
             .listRowBackground(Color.clear)
             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))

@@ -82,6 +82,7 @@ public struct Home {
                     state.adultBlockingSession = AdultBlockingSession.State()
                 } else if !state.isBlockingAdultContent {
                     state.adultBlockingSession = nil
+                    appStorage.adultUnblockDate = nil
                 }
                 return .none
 
@@ -96,14 +97,8 @@ public struct Home {
             case .destination(.presented(.confirmStartBlockingAdultContent(.delegate(.adultBlockingSessionStarted)))):
                 return .send(.resumeAdultBlockingSession, animation: .linear)
 
-
-            case .adultBlockingSession(.delegate(.deleteBlockingAdultContentButtonTapped)),
-                 .adultBlockingSession(.delegate(.pauseBlockingAdultContentButtonTapped)):
-                return .run { send in
-                    await screenTimeApi.unblockAdultContent()
-                    appStorage.adultUnblockDate = nil
-                    await send(.resumeAdultBlockingSession, animation: .linear)
-                }
+            case .adultBlockingSession(.delegate(.adultBlockingSessionEnded)):
+                return .send(.resumeAdultBlockingSession, animation: .linear)
 
             case .destination, .adultBlockingSession:
                 return .none
