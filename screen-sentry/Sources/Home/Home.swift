@@ -49,7 +49,7 @@ public struct Home {
     @Reducer(state: .equatable)
     public enum Destination {
         case startBlockingSession(StartBlockingSession)
-        case confirmStartBlockingAdultContent(AdultBlockingSession)
+        case confirmStartBlockingAdultContent(StartAdultBlockingSession)
     }
     
     @Dependency(\.screenTimeApi) var screenTimeApi
@@ -60,7 +60,7 @@ public struct Home {
             switch action {
             case .view(.homeViewAppeared):
                 return .send(.requestScreenTimeApiAccess)
-                       .merge(with: .send(.resumeAdultBlockingSession))
+                    .merge(with: .send(.resumeAdultBlockingSession, animation: .linear))
 
             case .requestScreenTimeApiAccess:
                 return .run { send in
@@ -80,7 +80,7 @@ public struct Home {
             case .resumeAdultBlockingSession:
                 if state.isBlockingAdultContent && state.adultBlockingSession == nil {
                     state.adultBlockingSession = AdultBlockingSession.State()
-                } else {
+                } else if !state.isBlockingAdultContent {
                     state.adultBlockingSession = nil
                 }
                 return .none
@@ -90,25 +90,18 @@ public struct Home {
                 return .none
 
             case .view(.templateAdultContentButtonTapped):
-                state.destination = .confirmStartBlockingAdultContent(AdultBlockingSession.State())
+                state.destination = .confirmStartBlockingAdultContent(StartAdultBlockingSession.State())
                 return .none
 
-            case let .destination(.presented(.confirmStartBlockingAdultContent(.delegate(.startAdultBlockingSession(selectedNumber, selectedTimeUnit))))):
-                if case let .confirmStartBlockingAdultContent(adultSession) = state.destination {
-                    withAnimation {
-                        state.adultBlockingSession = adultSession
-                    }
-                }
-                return .run { _ in
-                    await screenTimeApi.blockAdultContent()
-                    let unblockDate = Date.now.addingTimeInterval(Double(selectedNumber) * selectedTimeUnit.timeInterval)
-                    appStorage.adultUnblockDate = unblockDate
-                }
+            case .destination(.presented(.confirmStartBlockingAdultContent(.delegate(.adultBlockingSessionStarted)))):
+                return .send(.resumeAdultBlockingSession, animation: .linear)
+
 
             case .adultBlockingSession(.delegate(.deleteBlockingAdultContentButtonTapped)),
                  .adultBlockingSession(.delegate(.pauseBlockingAdultContentButtonTapped)):
                 return .run { send in
                     await screenTimeApi.unblockAdultContent()
+                    appStorage.adultUnblockDate = nil
                     await send(.resumeAdultBlockingSession, animation: .linear)
                 }
 
@@ -119,19 +112,6 @@ public struct Home {
         .ifLet(\.$destination, action: \.destination)
         .ifLet(\.adultBlockingSession, action: \.adultBlockingSession) {
             AdultBlockingSession()
-        }
-    }
-}
-
-extension UserDefaults {
-    private static let adultUnblockDateKey = "adultUnblockDate"
-
-    var adultUnblockDate: Date? {
-        get {
-            return UserDefaults.standard.object(forKey: Self.adultUnblockDateKey) as? Date
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: Self.adultUnblockDateKey)
         }
     }
 }

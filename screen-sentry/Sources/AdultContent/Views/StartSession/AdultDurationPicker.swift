@@ -10,7 +10,7 @@ import ComposableArchitecture
 import SwiftUI
 
 struct AdultDurationPicker: View {
-    @Perception.Bindable var store: StoreOf<AdultBlockingSession>
+    @Perception.Bindable var store: StoreOf<StartAdultBlockingSession>
 
     @Environment(\.dismiss) private var dismiss
 
@@ -67,7 +67,7 @@ struct AdultDurationPicker: View {
 }
 
 #Preview {
-    AdultDurationPicker(store: Store(initialState: AdultBlockingSession.State()) {
-        AdultBlockingSession()
+    AdultDurationPicker(store: Store(initialState: StartAdultBlockingSession.State()) {
+        StartAdultBlockingSession()
     })
 }

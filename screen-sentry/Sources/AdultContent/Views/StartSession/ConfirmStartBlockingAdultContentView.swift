@@ -10,11 +10,11 @@ import ComposableArchitecture
 import SwiftUI
 
 public struct ConfirmStartBlockingAdultContentView: View {
-    public init(store: StoreOf<AdultBlockingSession>) {
+    public init(store: StoreOf<StartAdultBlockingSession>) {
         self.store = store
     }
     
-    @Perception.Bindable var store: StoreOf<AdultBlockingSession>
+    @Perception.Bindable var store: StoreOf<StartAdultBlockingSession>
 
     @Environment(\.dismiss) private var dismiss
 
@@ -90,7 +90,7 @@ public struct ConfirmStartBlockingAdultContentView: View {
 }
 
 #Preview {
-    ConfirmStartBlockingAdultContentView(store: Store(initialState: AdultBlockingSession.State()) {
-        AdultBlockingSession()
+    ConfirmStartBlockingAdultContentView(store: Store(initialState: StartAdultBlockingSession.State()) {
+        StartAdultBlockingSession()
     })
 }
