@@ -64,6 +64,7 @@ public struct StartAdultBlockingSession {
         case durationPicker
     }
 
+    @Dependency(\.dismiss) var dismiss
     @Dependency(\.screenTimeApi) var screenTimeApi
     @Dependency(\.defaultAppStorage) var appStorage
 
@@ -85,6 +86,7 @@ public struct StartAdultBlockingSession {
                     let unblockDate = Date.now.addingTimeInterval(Double(number) * timeUnit.timeInterval)
                     appStorage.adultUnblockDate = unblockDate
                     await send(.delegate(.adultBlockingSessionStarted))
+                    await dismiss()
                 }
 
             case .destination, .binding, .delegate:

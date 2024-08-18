@@ -26,14 +26,14 @@ public struct AdultBlockingSession {
                 self.alwaysOn = true
             }
         }
-        
+
         var alwaysOn = false
         var timer: CountdownTimer.State
         @Presents var destination: Destination.State?
 
         var timerLabel: String {
             guard !alwaysOn else { return "Indefinitely" }
-            
+
             let days = timer.daysLeft
             let hours = timer.hoursLeft
             let minutes = timer.minutesLeft
@@ -100,9 +100,11 @@ public struct AdultBlockingSession {
             case .timer(.timerFinished):
                 return .send(.endSession)
 
-            case .endSession,
-                 .view(.pauseBlockingAdultContentButtonTapped),
-                 .view(.deleteBlockingAdultContentButtonTapped):
+            case .view(.pauseBlockingAdultContentButtonTapped),
+                    .view(.deleteBlockingAdultContentButtonTapped):
+                return .send(.endSession)
+
+            case .endSession:
                 return .run { send in
                     await screenTimeApi.unblockAdultContent()
                     appStorage.adultUnblockDate = nil

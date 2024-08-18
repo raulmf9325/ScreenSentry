@@ -41,7 +41,6 @@ public struct ConfirmStartBlockingAdultContentView: View {
                     VStack(spacing: 15) {
                         Button("Start") {
                             store.send(.view(.startBlockingAdultSessionButtonTapped))
-                            dismiss()
                         }
                         .buttonStyle(CapsuleButtonStyle())
                     }
