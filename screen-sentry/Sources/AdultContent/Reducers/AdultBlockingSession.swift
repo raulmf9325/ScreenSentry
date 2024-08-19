@@ -17,16 +17,15 @@ public struct AdultBlockingSession : Sendable{
     public struct State: Equatable {
         public init() {
             @Dependency(\.defaultAppStorage) var appStorage
-//            if let unblockDate = appStorage.adultUnblockDate {
-//                self.timer = CountdownTimer.State(targetDate:  unblockDate)
-//                self.alwaysOn = false
-//            } else {
-//                /* A date in the past will stop the timer immediately */
-//                self.timer = CountdownTimer.State(targetDate: Date.now.addingTimeInterval(-2600))
-//                self.alwaysOn = true
-//            }
-            alwaysOn = false
-            timer = CountdownTimer.State(targetDate:  Date.now.addingTimeInterval(3))
+
+            if let unblockDate = appStorage.adultUnblockDate {
+                self.timer = CountdownTimer.State(targetDate:  unblockDate)
+                self.alwaysOn = false
+            } else {
+                /* A date in the past will stop the timer immediately */
+                self.timer = CountdownTimer.State(targetDate: Date.now.addingTimeInterval(-2600))
+                self.alwaysOn = true
+            }
         }
 
         var alwaysOn = false

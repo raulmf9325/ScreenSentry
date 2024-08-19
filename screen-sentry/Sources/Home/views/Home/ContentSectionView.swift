@@ -34,7 +34,7 @@ struct ContentSectionView: View {
 
             Text(description)
                 .foregroundStyle(.gray)
-                .font(.callout)
+                .font(.system(size: 14))
         }
         .padding(.vertical, 10)
         .sectionView()

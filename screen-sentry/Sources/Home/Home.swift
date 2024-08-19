@@ -60,7 +60,7 @@ public struct Home : Sendable{
             switch action {
             case .view(.homeViewAppeared):
                 return .send(.requestScreenTimeApiAccess)
-                    .merge(with: .send(.resumeAdultBlockingSession, animation: .linear))
+                    .merge(with: .send(.resumeAdultBlockingSession, animation: .default))
 
             case .requestScreenTimeApiAccess:
                 return .run { send in
@@ -95,10 +95,14 @@ public struct Home : Sendable{
                 return .none
 
             case .destination(.presented(.confirmStartBlockingAdultContent(.delegate(.adultBlockingSessionStarted)))):
-                return .send(.resumeAdultBlockingSession, animation: .linear)
+                return .run { send in
+                    await send(.resumeAdultBlockingSession, animation: .default)
+                }
 
             case .adultBlockingSession(.delegate(.adultBlockingSessionEnded)):
-                return .send(.resumeAdultBlockingSession, animation: .linear)
+                return .run { send in
+                    await send(.resumeAdultBlockingSession, animation: .default)
+                }
 
             case .destination, .adultBlockingSession:
                 return .none

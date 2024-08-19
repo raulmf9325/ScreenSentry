@@ -27,23 +27,22 @@ public struct ConfirmStartBlockingAdultContentView: View {
                     .multilineTextAlignment(.center)
                     .padding(.top)
 
-                VStack(alignment: .leading) {
-                    Text("Take your first step towards success by desexualizing your brain.")
-                        .font(.callout)
-                        .foregroundStyle(Color.gray)
-                        .padding(.top)
+                Text("Take your first step towards success by desexualizing your brain.")
+                    .font(.caption)
+                    .foregroundStyle(Color.gray)
+                    .padding(.top, 5)
+                    .multilineTextAlignment(.center)
 
-                    duration
-                        .padding(.top)
+                duration
+                    .padding(.top, 20)
 
-                    Spacer()
+                Spacer()
 
-                    VStack(spacing: 15) {
-                        Button("Start") {
-                            store.send(.view(.startBlockingAdultSessionButtonTapped))
-                        }
-                        .buttonStyle(CapsuleButtonStyle())
+                VStack(spacing: 15) {
+                    Button("Start") {
+                        store.send(.view(.startBlockingAdultSessionButtonTapped))
                     }
+                    .buttonStyle(CapsuleButtonStyle())
                 }
             }
             .padding(20)
