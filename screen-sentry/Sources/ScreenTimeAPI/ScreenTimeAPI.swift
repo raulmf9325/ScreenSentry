@@ -10,14 +10,14 @@ import DependenciesMacros
 import Foundation
 
 @DependencyClient
-public struct ScreenTimeAPI {
+public struct ScreenTimeAPI: Sendable {
     public var requestAccess: () async throws -> ScreenTimeAccess
     public var blockAdultContent: () -> Void
     public var unblockAdultContent: () -> Void
     public var isBlockingAdultContent: () -> Bool = { false }
 }
 
-public enum ScreenTimeAccess {
+public enum ScreenTimeAccess: Sendable {
     case approved
     case denied
     case notDetermined

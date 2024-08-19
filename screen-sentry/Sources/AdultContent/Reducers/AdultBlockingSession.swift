@@ -10,21 +10,23 @@ import CountdownTimer
 import Foundation
 
 @Reducer
-public struct AdultBlockingSession {
+public struct AdultBlockingSession : Sendable{
     public init() {}
 
     @ObservableState
     public struct State: Equatable {
         public init() {
             @Dependency(\.defaultAppStorage) var appStorage
-            if let unblockDate = appStorage.adultUnblockDate {
-                self.timer = CountdownTimer.State(targetDate:  unblockDate)
-                self.alwaysOn = false
-            } else {
-                /* A date in the past will stop the timer immediately */
-                self.timer = CountdownTimer.State(targetDate: Date.now.addingTimeInterval(-2600))
-                self.alwaysOn = true
-            }
+//            if let unblockDate = appStorage.adultUnblockDate {
+//                self.timer = CountdownTimer.State(targetDate:  unblockDate)
+//                self.alwaysOn = false
+//            } else {
+//                /* A date in the past will stop the timer immediately */
+//                self.timer = CountdownTimer.State(targetDate: Date.now.addingTimeInterval(-2600))
+//                self.alwaysOn = true
+//            }
+            alwaysOn = false
+            timer = CountdownTimer.State(targetDate:  Date.now.addingTimeInterval(3))
         }
 
         var alwaysOn = false
@@ -47,7 +49,7 @@ public struct AdultBlockingSession {
                 return "\(format(hours)) Hours • \(format(minutes)) Minutes remaining"
             case (_, _, 1..., _):
                 return "\(format(minutes)) Minutes • \(format(seconds)) Seconds remaining"
-            case (_, _, _, 1...):
+            case (_, _, _, 0...):
                 return "\(format(seconds)) Seconds remaining"
             default:
                 return "Indefinitely"
@@ -55,7 +57,7 @@ public struct AdultBlockingSession {
         }
     }
 
-    public enum Action: ViewAction {
+    public enum Action: ViewAction, Sendable {
         case view(View)
         case delegate(Delegate)
         case timer(CountdownTimer.Action)
@@ -63,7 +65,7 @@ public struct AdultBlockingSession {
         case endSession
     }
 
-    public enum View {
+    public enum View : Sendable{
         case blockingAdultContentViewAppeared
         case blockingAdultContentViewTapped
         case pauseBlockingAdultContentButtonTapped
@@ -71,12 +73,12 @@ public struct AdultBlockingSession {
     }
 
     @Reducer(state: .equatable)
-    public enum Destination {
+    public enum Destination: Sendable {
         case confirmPauseResumeDeleteAdultContent
     }
 
     @CasePathable
-    public enum Delegate {
+    public enum Delegate : Sendable{
         case adultBlockingSessionEnded
     }
 
@@ -106,7 +108,7 @@ public struct AdultBlockingSession {
 
             case .endSession:
                 return .run { send in
-                    await screenTimeApi.unblockAdultContent()
+                    screenTimeApi.unblockAdultContent()
                     appStorage.adultUnblockDate = nil
                     await send(.delegate(.adultBlockingSessionEnded))
                 }

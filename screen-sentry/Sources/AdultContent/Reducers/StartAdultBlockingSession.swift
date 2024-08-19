@@ -9,7 +9,7 @@ import ComposableArchitecture
 import Foundation
 import ScreenTimeAPI
 
-public enum TimeUnit: String, CaseIterable {
+public enum TimeUnit: String, CaseIterable, Sendable {
     case minutes = "Minute(s)"
     case hours = "Hour(s)"
     case days = "Day(s)"
@@ -27,7 +27,7 @@ public enum TimeUnit: String, CaseIterable {
 }
 
 @Reducer
-public struct StartAdultBlockingSession {
+public struct StartAdultBlockingSession: Sendable {
     public init() {}
 
     @ObservableState
@@ -42,25 +42,25 @@ public struct StartAdultBlockingSession {
         @Presents var destination: Destination.State?
     }
 
-    public enum Action: ViewAction, BindableAction {
+    public enum Action: ViewAction, BindableAction, Sendable {
         case binding(BindingAction<State>)
         case view(View)
         case destination(PresentationAction<Destination.Action>)
         case delegate(Delegate)
     }
 
-    public enum View {
+    public enum View : Sendable{
         case setDurationButtonTapped
         case durationPickerConfirmButtonTapped
         case startBlockingAdultSessionButtonTapped
     }
 
-    public enum Delegate {
+    public enum Delegate : Sendable{
         case adultBlockingSessionStarted
     }
 
     @Reducer(state: .equatable)
-    public enum Destination {
+    public enum Destination: Sendable {
         case durationPicker
     }
 
@@ -82,7 +82,7 @@ public struct StartAdultBlockingSession {
 
             case .view(.startBlockingAdultSessionButtonTapped):
                 return .run { [number = state.selectedNumber, timeUnit = state.selectedTimeUnit ] send in
-                    await screenTimeApi.blockAdultContent()
+                    screenTimeApi.blockAdultContent()
                     let unblockDate = Date.now.addingTimeInterval(Double(number) * timeUnit.timeInterval)
                     appStorage.adultUnblockDate = unblockDate
                     await send(.delegate(.adultBlockingSessionStarted))

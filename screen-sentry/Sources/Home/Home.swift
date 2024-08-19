@@ -13,7 +13,7 @@ import StartBlockingSession
 import SwiftUI
 
 @Reducer
-public struct Home {
+public struct Home : Sendable{
     public init() {}
 
     @ObservableState
@@ -30,7 +30,7 @@ public struct Home {
         }
     }
     
-    public enum Action: ViewAction {
+    public enum Action: ViewAction, Sendable {
         case view(View)
         case requestScreenTimeApiAccess
         case screenTimeAccessResponse(ScreenTimeAccess)
@@ -40,14 +40,14 @@ public struct Home {
     }
     
     @CasePathable
-    public enum View {
+    public enum View: Sendable {
         case homeViewAppeared
         case startBlockingSessionButtonTapped
         case templateAdultContentButtonTapped
     }
 
     @Reducer(state: .equatable)
-    public enum Destination {
+    public enum Destination: Sendable {
         case startBlockingSession(StartBlockingSession)
         case confirmStartBlockingAdultContent(StartAdultBlockingSession)
     }

@@ -9,7 +9,7 @@ import ComposableArchitecture
 import Foundation
 
 @Reducer
-public struct CountdownTimer {
+public struct CountdownTimer: Sendable {
     public init() {}
 
     @ObservableState
@@ -18,6 +18,7 @@ public struct CountdownTimer {
             self.targetDate = targetDate
             @Dependency(\.date.now) var now
             self.timeRemaining = targetDate.timeIntervalSince(now)
+            print("time remaining", timeRemaining)
         }
 
         let targetDate: Date
@@ -29,7 +30,7 @@ public struct CountdownTimer {
         public var secondsLeft: Int { Int(timeRemaining.truncatingRemainder(dividingBy: 60)) }
     }
 
-    public enum Action: Equatable {
+    public enum Action: Equatable, Sendable {
         case restart
         case timerTicked
         case timerFinished
@@ -52,10 +53,8 @@ public struct CountdownTimer {
                 }
 
             case .timerTicked:
-                guard state.timeRemaining > 0 else { return .send(.timerFinished) }
-
                 state.timeRemaining -= 1
-                return .none
+                return state.timeRemaining <= 0 ? .send(.timerFinished) : .none
 
             case .timerFinished:
                 return .cancel(id: CancelID.timer)
