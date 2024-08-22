@@ -26,24 +26,37 @@ public struct ConfirmStartBlockingAdultContentView: View {
                     .foregroundStyle(Color.white)
                     .multilineTextAlignment(.center)
                     .padding(.top)
+                    .padding(.horizontal)
 
                 Text("Take your first step towards success by desexualizing your brain.")
-                    .font(.caption)
+                    .font(.system(size: 14))
                     .foregroundStyle(Color.gray)
                     .padding(.top, 5)
                     .multilineTextAlignment(.center)
+                    .padding(.horizontal)
 
-                duration
-                    .padding(.top, 20)
+                SegmentedControl(selectedIndex: $store.segmentedControlIndex,
+                                 titles: ["Permanently", "Set Duration"])
+                .padding(.top, 20)
+
+                if store.segmentedControlIndex == 0 {
+                    Text("Adult content will be blocked for all major porn sites on all browsers. Content can be unblocked by pausing or deleting this session.")
+                        .font(.system(size: 14))
+                        .foregroundStyle(Color.gray)
+                        .padding(.horizontal)
+                        .padding(.top, 30)
+                } else {
+                    duration
+                        .padding(.horizontal)
+                        .padding(.top, 30)
+                }
 
                 Spacer()
-
-                VStack(spacing: 15) {
-                    Button("Start") {
-                        store.send(.view(.startBlockingAdultSessionButtonTapped))
-                    }
-                    .buttonStyle(CapsuleButtonStyle())
+                Button("Start") {
+                    store.send(.view(.startBlockingAdultSessionButtonTapped))
                 }
+                .buttonStyle(CapsuleButtonStyle())
+                .padding(.horizontal)
             }
             .padding(20)
             .background(AppTheme.Colors.sectionViewColor)
@@ -88,7 +101,18 @@ public struct ConfirmStartBlockingAdultContentView: View {
 }
 
 #Preview {
-    ConfirmStartBlockingAdultContentView(store: Store(initialState: StartAdultBlockingSession.State()) {
-        StartAdultBlockingSession()
-    })
+    struct PresentingView: View {
+        @State private var isShowingConfirmation = true
+        var body: some View {
+            AppTheme.Colors.accentColor
+                .sheet(isPresented: $isShowingConfirmation) {
+                    ConfirmStartBlockingAdultContentView(store: Store(initialState: StartAdultBlockingSession.State()) {
+                        StartAdultBlockingSession()
+                    })
+                    .presentationDetents([.fraction(0.58)])
+                    .presentationDragIndicator(.visible)
+                }
+        }
+    }
+    return PresentingView()
 }

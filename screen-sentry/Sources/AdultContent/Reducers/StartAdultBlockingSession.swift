@@ -37,6 +37,7 @@ public struct StartAdultBlockingSession: Sendable {
             self.selectedTimeUnit = selectedTimeUnit
         }
         
+        var segmentedControlIndex = 0
         var selectedNumber: Int = 7
         var selectedTimeUnit: TimeUnit = .days
         @Presents var destination: Destination.State?
