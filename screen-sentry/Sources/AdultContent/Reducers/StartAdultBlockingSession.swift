@@ -82,10 +82,14 @@ public struct StartAdultBlockingSession: Sendable {
                 return .none
 
             case .view(.startBlockingAdultSessionButtonTapped):
-                return .run { [number = state.selectedNumber, timeUnit = state.selectedTimeUnit ] send in
+                return .run { [number = state.selectedNumber, 
+                               timeUnit = state.selectedTimeUnit,
+                               segmentedControlIndex = state.segmentedControlIndex] send in
                     screenTimeApi.blockAdultContent()
-                    let unblockDate = Date.now.addingTimeInterval(Double(number) * timeUnit.timeInterval)
-                    appStorage.adultUnblockDate = unblockDate
+                    if segmentedControlIndex == 1 {
+                        let unblockDate = Date.now.addingTimeInterval(Double(number) * timeUnit.timeInterval)
+                        appStorage.adultUnblockDate = unblockDate
+                    }
                     await send(.delegate(.adultBlockingSessionStarted))
                     await dismiss()
                 }

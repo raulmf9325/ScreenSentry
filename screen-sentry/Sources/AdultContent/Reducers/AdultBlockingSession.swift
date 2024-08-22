@@ -22,18 +22,16 @@ public struct AdultBlockingSession : Sendable{
                 self.timer = CountdownTimer.State(targetDate:  unblockDate)
                 self.alwaysOn = false
             } else {
-                /* A date in the past will stop the timer immediately */
-                self.timer = CountdownTimer.State(targetDate: Date.now.addingTimeInterval(-2600))
                 self.alwaysOn = true
             }
         }
 
         var alwaysOn = false
-        var timer: CountdownTimer.State
+        var timer: CountdownTimer.State?
         @Presents var destination: Destination.State?
 
         var timerLabel: String {
-            guard !alwaysOn else { return "Indefinitely" }
+            guard !alwaysOn, let timer else { return "Indefinitely" }
 
             let days = timer.daysLeft
             let hours = timer.hoursLeft
@@ -85,14 +83,10 @@ public struct AdultBlockingSession : Sendable{
     @Dependency(\.defaultAppStorage) var appStorage
 
     public var body: some ReducerOf<Self> {
-        Scope(state: \.timer, action: \.timer) {
-            CountdownTimer()
-        }
-
         Reduce { state, action in
             switch action {
             case .view(.blockingAdultContentViewAppeared):
-                return .send(.timer(.restart))
+                return state.alwaysOn ? .none : .send(.timer(.restart))
 
             case .view(.blockingAdultContentViewTapped):
                 state.destination = .confirmPauseResumeDeleteAdultContent
@@ -117,5 +111,8 @@ public struct AdultBlockingSession : Sendable{
             }
         }
         .ifLet(\.$destination, action: \.destination)
+        .ifLet(\.timer, action: \.timer) {
+            CountdownTimer()
+        }
     }
 }
