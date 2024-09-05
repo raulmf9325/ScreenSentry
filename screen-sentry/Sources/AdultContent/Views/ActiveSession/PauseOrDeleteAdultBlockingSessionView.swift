@@ -15,14 +15,14 @@ struct PauseOrDeleteAdultBlockingSessionView: View {
 
      var body: some View {
         VStack {
-            Text("Momentarily pause or permanently delete this session.")
+            Text("Momentarily Pause Or Permanently Delete This Session.")
                 .font(.title3)
                 .foregroundStyle(Color.white)
                 .multilineTextAlignment(.center)
                 .padding(.top)
 
             Text("Pausing the session will unblock adult content temporarily. Deleting the session will unblock it permanently.")
-                .font(.callout)
+                .font(.system(size: 14))
                 .foregroundStyle(Color.gray)
                 .padding(.top)
 

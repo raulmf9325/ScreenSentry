@@ -21,7 +21,7 @@ public struct ConfirmStartBlockingAdultContentView: View {
     public var body: some View {
         WithPerceptionTracking {
             VStack {
-                Text("Adult websites will be blocked on all browsers")
+                Text("Adult Websites Will Be Blocked On All Browsers")
                     .font(.title3)
                     .foregroundStyle(Color.white)
                     .multilineTextAlignment(.center)
