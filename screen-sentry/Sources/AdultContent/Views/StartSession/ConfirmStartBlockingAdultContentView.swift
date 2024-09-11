@@ -35,20 +35,24 @@ public struct ConfirmStartBlockingAdultContentView: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
 
-                SegmentedControl(selectedIndex: $store.segmentedControlIndex,
+                SegmentedControl(selectedIndex: $store.durationOptionIndex,
                                  titles: ["Permanently", "Set Duration"])
                 .padding(.top, 20)
 
-                if store.segmentedControlIndex == 0 {
+                if store.durationOption == .permanently {
                     Text("Adult content will be blocked for all major porn sites on all browsers. Content can be unblocked by pausing or deleting this session.")
                         .font(.system(size: 14))
                         .foregroundStyle(Color.gray)
                         .padding(.horizontal)
                         .padding(.top, 30)
                 } else {
-                    duration
-                        .padding(.horizontal)
-                        .padding(.top, 30)
+                    VStack(spacing: 25) {
+                        duration
+                            .padding(.top, 30)
+
+                        notificationsToggle
+                    }
+                    .padding(.horizontal)
                 }
 
                 Spacer()
@@ -98,6 +102,15 @@ public struct ConfirmStartBlockingAdultContentView: View {
             .buttonStyle(.plain)
         }
     }
+
+    var notificationsToggle: some View {
+        Toggle(isOn: .constant(true), label: {
+            Text("Notifications")
+                .foregroundStyle(.white)
+        })
+        .tint(.green)
+        .padding(.horizontal)
+    }
 }
 
 #Preview {
@@ -106,10 +119,10 @@ public struct ConfirmStartBlockingAdultContentView: View {
         var body: some View {
             AppTheme.Colors.accentColor
                 .sheet(isPresented: $isShowingConfirmation) {
-                    ConfirmStartBlockingAdultContentView(store: Store(initialState: StartAdultBlockingSession.State()) {
+                    ConfirmStartBlockingAdultContentView(store: Store(initialState: StartAdultBlockingSession.State(durationOption: .setDuration)) {
                         StartAdultBlockingSession()
                     })
-                    .presentationDetents([.fraction(0.58)])
+                    .presentationDetents([.fraction(0.65)])
                     .presentationDragIndicator(.visible)
                 }
         }

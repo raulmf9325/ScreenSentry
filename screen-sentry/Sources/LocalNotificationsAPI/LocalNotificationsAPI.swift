@@ -12,6 +12,7 @@ import Foundation
 @DependencyClient
 public struct LocalNotificationsAPI {
     public var requestAccess: () async throws -> LocalNotificationsAccess
+    public var scheduleNotification: (String, String, Date) -> Void
 }
 
 public enum LocalNotificationsAccess {

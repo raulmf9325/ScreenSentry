@@ -11,7 +11,8 @@ import LocalNotificationsAPI
 import UserNotifications
 
 extension LocalNotificationsAPI: DependencyKey {
-    public static let liveValue = Self(requestAccess: requestLocalNotificationsAccess)
+    public static let liveValue = Self(requestAccess: requestLocalNotificationsAccess, 
+                                       scheduleNotification: scheduleLocalNotification)
 }
 
 func requestLocalNotificationsAccess() async throws -> LocalNotificationsAccess {
@@ -19,17 +20,13 @@ func requestLocalNotificationsAccess() async throws -> LocalNotificationsAccess 
     return granted ? .granted : .denied
 }
 
-func scheduleNotification(title: String, subtitle: String) {
+func scheduleLocalNotification(title: String, subtitle: String, targetDate: Date) {
     let content = UNMutableNotificationContent()
     content.title = title
     content.subtitle = subtitle
     content.sound = UNNotificationSound.default
 
-    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-
-    // choose a random identifier
+    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: targetDate.timeIntervalSinceNow, repeats: false)
     let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-
-    // add our notification request
     UNUserNotificationCenter.current().add(request)
 }

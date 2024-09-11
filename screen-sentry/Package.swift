@@ -44,6 +44,7 @@ let package = Package(
             dependencies: [
                 "AppUI",
                 "ScreenTimeAPI",
+                "LocalNotificationsAPI",
                 "CountdownTimer",
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
             ]),
@@ -90,12 +91,3 @@ let package = Package(
         ),
     ]
 )
-
-for target in package.targets {
-    target.swiftSettings = [
-        .unsafeFlags([
-            "-Xfrontend", "-enable-actor-data-race-checks",
-            "-Xfrontend", "-warn-concurrency",
-        ])
-    ]
-}

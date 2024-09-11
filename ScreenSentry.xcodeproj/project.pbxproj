@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		061B18802C90894900A27D3F /* LocalNotificationsApiLive in Frameworks */ = {isa = PBXBuildFile; productRef = 061B187F2C90894900A27D3F /* LocalNotificationsApiLive */; };
 		4F0B3F452C0D56F500D5FC3E /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0B3F442C0D56F500D5FC3E /* RootView.swift */; };
 		4F0B3F472C0D67AE00D5FC3E /* AppCore in Frameworks */ = {isa = PBXBuildFile; productRef = 4F0B3F462C0D67AE00D5FC3E /* AppCore */; };
 		4F24CB332C0559B500495DF2 /* AppUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4F24CB322C0559B500495DF2 /* AppUI */; };
@@ -36,6 +37,7 @@
 				4F25678B2C0CCC4A00BA1236 /* Home in Frameworks */,
 				4F24CB332C0559B500495DF2 /* AppUI in Frameworks */,
 				4F60257B2C05310100E2D08F /* Home in Frameworks */,
+				061B18802C90894900A27D3F /* LocalNotificationsApiLive in Frameworks */,
 				4FED50B82C17637100686BCA /* ScreenTimeApiLive in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,6 +104,7 @@
 				4F25678A2C0CCC4A00BA1236 /* Home */,
 				4F0B3F462C0D67AE00D5FC3E /* AppCore */,
 				4FED50B72C17637100686BCA /* ScreenTimeApiLive */,
+				061B187F2C90894900A27D3F /* LocalNotificationsApiLive */,
 			);
 			productName = MindGuard;
 			productReference = 4FC76DFD2BE83D07009402BF /* ScreenSentry.app */;
@@ -370,6 +373,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		061B187F2C90894900A27D3F /* LocalNotificationsApiLive */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LocalNotificationsApiLive;
+		};
 		4F0B3F462C0D67AE00D5FC3E /* AppCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AppCore;

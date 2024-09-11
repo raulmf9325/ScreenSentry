@@ -7,6 +7,7 @@
 
 import ComposableArchitecture
 import Foundation
+import LocalNotificationsAPI
 import ScreenTimeAPI
 
 public enum TimeUnit: String, CaseIterable, Sendable {
@@ -32,15 +33,28 @@ public struct StartAdultBlockingSession: Sendable {
 
     @ObservableState
     public struct State: Equatable {
-        public init(selectedNumber: Int = 7, selectedTimeUnit: TimeUnit = .days) {
+        public init(selectedNumber: Int = 7, 
+                    selectedTimeUnit: TimeUnit = .days,
+                    durationOption: DurationOption = .permanently) {
             self.selectedNumber = selectedNumber
             self.selectedTimeUnit = selectedTimeUnit
+            self.durationOption = durationOption
         }
-        
-        var segmentedControlIndex = 0
+
+        public enum DurationOption: Int {
+            case permanently
+            case setDuration
+        }
+
+        var durationOption: DurationOption
         var selectedNumber: Int = 7
         var selectedTimeUnit: TimeUnit = .days
         @Presents var destination: Destination.State?
+
+        var durationOptionIndex: Int {
+            get { durationOption.rawValue }
+            set { self.durationOption = DurationOption(rawValue: newValue) ?? .permanently }
+        }
     }
 
     public enum Action: ViewAction, BindableAction, Sendable {
@@ -68,6 +82,7 @@ public struct StartAdultBlockingSession: Sendable {
     @Dependency(\.dismiss) var dismiss
     @Dependency(\.screenTimeApi) var screenTimeApi
     @Dependency(\.defaultAppStorage) var appStorage
+    @Dependency(\.localNotificationsAPI) var localNotificationsApi
 
     public var body: some ReducerOf<Self> {
         BindingReducer()
@@ -84,11 +99,19 @@ public struct StartAdultBlockingSession: Sendable {
             case .view(.startBlockingAdultSessionButtonTapped):
                 return .run { [number = state.selectedNumber, 
                                timeUnit = state.selectedTimeUnit,
-                               segmentedControlIndex = state.segmentedControlIndex] send in
+                               durationOption = state.durationOption] send in
                     screenTimeApi.blockAdultContent()
-                    if segmentedControlIndex == 1 {
+
+                    if durationOption == .setDuration {
                         let unblockDate = Date.now.addingTimeInterval(Double(number) * timeUnit.timeInterval)
                         appStorage.adultUnblockDate = unblockDate
+
+                        let notificationAccess = try await localNotificationsApi.requestAccess()
+                        if notificationAccess == .granted {
+                            localNotificationsApi.scheduleNotification("Adult Blocking Session Ended",
+                                                                       "Open to unblock adult content.",
+                                                                       unblockDate)
+                        }
                     }
                     await send(.delegate(.adultBlockingSessionStarted))
                     await dismiss()
@@ -100,6 +123,10 @@ public struct StartAdultBlockingSession: Sendable {
 
         }
         .ifLet(\.$destination, action: \.destination)
+    }
+
+    private func scheduleSessionEndedNotification() {
+
     }
 }
 
