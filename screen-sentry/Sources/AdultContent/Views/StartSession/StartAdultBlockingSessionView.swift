@@ -9,7 +9,7 @@ import AppUI
 import ComposableArchitecture
 import SwiftUI
 
-public struct ConfirmStartBlockingAdultContentView: View {
+public struct StartAdultBlockingSessionView: View {
     public init(store: StoreOf<StartAdultBlockingSession>) {
         self.store = store
     }
@@ -119,7 +119,7 @@ public struct ConfirmStartBlockingAdultContentView: View {
         var body: some View {
             AppTheme.Colors.accentColor
                 .sheet(isPresented: $isShowingConfirmation) {
-                    ConfirmStartBlockingAdultContentView(store: Store(initialState: StartAdultBlockingSession.State(durationOption: .setDuration)) {
+                    StartAdultBlockingSessionView(store: Store(initialState: StartAdultBlockingSession.State(durationOption: .setDuration)) {
                         StartAdultBlockingSession()
                     })
                     .presentationDetents([.fraction(0.65)])

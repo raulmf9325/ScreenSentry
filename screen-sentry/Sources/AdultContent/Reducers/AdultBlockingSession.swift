@@ -81,6 +81,7 @@ public struct AdultBlockingSession : Sendable{
 
     @Dependency(\.screenTimeApi) var screenTimeApi
     @Dependency(\.defaultAppStorage) var appStorage
+    @Dependency(\.localNotificationsAPI) var localNotificationsApi
 
     public var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -103,6 +104,7 @@ public struct AdultBlockingSession : Sendable{
                 return .run { send in
                     screenTimeApi.unblockAdultContent()
                     appStorage.adultUnblockDate = nil
+                    localNotificationsApi.removeNotification(LocalNotificationId.adultSessionEnded.rawValue)
                     await send(.delegate(.adultBlockingSessionEnded))
                 }
 

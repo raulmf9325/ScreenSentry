@@ -66,9 +66,8 @@ public struct BlockingAdultContentView: View {
 
     var confirmPauseOrDeleteAdultSession: some View {
         WithPerceptionTracking {
-            PauseOrDeleteAdultBlockingSessionView(store: store)
-            .presentationDetents([.fraction(1/2)])
-            .presentationDragIndicator(.visible)
+            PauseOrEndAdultBlockingSessionView(store: store)
+
         }
     }
 }

@@ -25,7 +25,7 @@ struct BlockContentView: View {
             .listStyle(.insetGrouped)
             .sheet(item: $store.scope(state: \.destination?.confirmStartBlockingAdultContent,
                                       action: \.destination.confirmStartBlockingAdultContent)) { store in
-                ConfirmStartBlockingAdultContentView(store: store)
+                StartAdultBlockingSessionView(store: store)
                 .presentationDetents([.fraction(2/3)])
                 .presentationDragIndicator(.visible)
             }

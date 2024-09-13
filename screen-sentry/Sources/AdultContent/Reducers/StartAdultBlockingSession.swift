@@ -27,6 +27,10 @@ public enum TimeUnit: String, CaseIterable, Sendable {
     }
 }
 
+enum LocalNotificationId: String {
+    case adultSessionEnded
+}
+
 @Reducer
 public struct StartAdultBlockingSession: Sendable {
     public init() {}
@@ -110,7 +114,8 @@ public struct StartAdultBlockingSession: Sendable {
                         if notificationAccess == .granted {
                             localNotificationsApi.scheduleNotification("Adult Blocking Session Ended",
                                                                        "Open to unblock adult content.",
-                                                                       unblockDate)
+                                                                       unblockDate,
+                                                                       LocalNotificationId.adultSessionEnded.rawValue)
                         }
                     }
                     await send(.delegate(.adultBlockingSessionStarted))
