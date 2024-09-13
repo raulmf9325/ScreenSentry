@@ -10,7 +10,7 @@ import ComposableArchitecture
 import SwiftUI
 
 struct ActiveSessionsView: View {
-    @Perception.Bindable var store: StoreOf<Home>
+    @Perception.Bindable var store: StoreOf<HomeFeature>
 
     var body: some View {
         WithPerceptionTracking {
@@ -29,8 +29,8 @@ struct ActiveSessionsView: View {
 
 #Preview {
     ActiveSessionsView(store:
-        Store(initialState: Home.State()) {
-            Home()
+        Store(initialState: HomeFeature.State()) {
+        HomeFeature()
         } withDependencies: {
             $0.screenTimeApi.requestAccess = {
                 return .approved

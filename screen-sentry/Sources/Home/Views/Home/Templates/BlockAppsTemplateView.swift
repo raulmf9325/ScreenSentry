@@ -9,7 +9,7 @@ import ComposableArchitecture
 import SwiftUI
 
 struct BlockAppsTemplateView: View {
-    let store: StoreOf<Home>
+    let store: StoreOf<HomeFeature>
 
     var body: some View {
         WithPerceptionTracking {
@@ -31,9 +31,9 @@ struct BlockAppsTemplateView: View {
 }
 
 private struct StartSession: View {
-    let store: StoreOf<Home>
+    let store: StoreOf<HomeFeature>
 
-    init(_ store: StoreOf<Home>) {
+    init(_ store: StoreOf<HomeFeature>) {
         self.store = store
     }
 
@@ -76,9 +76,9 @@ private struct RelaxedMorning: View {
 }
 
 private struct AdultContent: View {
-    let store: StoreOf<Home>
+    let store: StoreOf<HomeFeature>
 
-    init(_ store: StoreOf<Home>) {
+    init(_ store: StoreOf<HomeFeature>) {
         self.store = store
     }
 

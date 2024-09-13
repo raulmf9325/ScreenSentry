@@ -12,9 +12,9 @@ import ScreenTimeAPI
 import StartBlockingSession
 
 public struct HomeView: View {
-    @Perception.Bindable var store: StoreOf<Home>
-    
-    public init(store: StoreOf<Home>) {
+    @Perception.Bindable var store: StoreOf<HomeFeature>
+
+    public init(store: StoreOf<HomeFeature>) {
         self.store = store
     }
     
@@ -45,8 +45,8 @@ public struct HomeView: View {
 
 
 #Preview {
-    HomeView(store: Store(initialState: Home.State()) {
-        Home()
+    HomeView(store: Store(initialState: HomeFeature.State()) {
+        HomeFeature()
     } withDependencies: {
         $0.screenTimeApi.requestAccess = {
             return .approved

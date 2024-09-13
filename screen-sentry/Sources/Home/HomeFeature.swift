@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  HomeFeature.swift
+//
 //
 //  Created by Raul Mena on 6/2/24.
 //
@@ -13,7 +13,7 @@ import StartBlockingSession
 import SwiftUI
 
 @Reducer
-public struct Home : Sendable{
+public struct HomeFeature : Sendable{
     public init() {}
 
     @ObservableState

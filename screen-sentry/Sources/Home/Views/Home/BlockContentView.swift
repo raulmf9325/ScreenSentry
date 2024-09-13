@@ -11,7 +11,7 @@ import ComposableArchitecture
 import SwiftUI
 
 struct BlockContentView: View {
-    @Perception.Bindable var store: StoreOf<Home>
+    @Perception.Bindable var store: StoreOf<HomeFeature>
 
     var body: some View {
         WithPerceptionTracking {
@@ -35,8 +35,8 @@ struct BlockContentView: View {
 
 #Preview {
     BlockContentView(store:
-                        Store(initialState: Home.State()) {
-        Home()
+                        Store(initialState: HomeFeature.State()) {
+        HomeFeature()
     } withDependencies: {
         $0.screenTimeApi.requestAccess = {
             return .approved

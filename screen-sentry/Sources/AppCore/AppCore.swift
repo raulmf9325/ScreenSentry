@@ -14,9 +14,9 @@ public struct ScreenSentry {
     @ObservableState
     public struct State: Equatable {
         public var selectedTab: Tab = .home
-        public var home = Home.State()
-        public var profile = Home.State()
-        
+        public var home = HomeFeature.State()
+        public var profile = HomeFeature.State()
+
         public enum Tab: Equatable {
             case home
             case profile
@@ -26,18 +26,18 @@ public struct ScreenSentry {
     }
     
     public enum Action {
-        case home(Home.Action)
-        case profile(Home.Action)
+        case home(HomeFeature.Action)
+        case profile(HomeFeature.Action)
     }
     
     public init() {}
     
     public var body: some ReducerOf<Self> {
         Scope(state: \.home, action: \.home) {
-            Home()
+            HomeFeature()
         }
         Scope(state: \.profile, action: \.profile) {
-            Home()
+            HomeFeature()
         }
     }
 }
